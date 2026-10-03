@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Espanhol 6º ano | Taller de Historietas 🎨</title>
+<style>
+  :root{
+    --bg:#16162a; --bg2:#1e1e38; --card:#24243f; --card2:#2c2c4e;
+    --vineta:#f5efe2; --cian:#2ec4c4; --magenta:#ff4d94; --amar:#ffd23f;
+    --ink:#ece9f5; --ink2:#a9a6c4; --line:#3a3a5e; --ok:#43e97b; --warn:#ffd23f;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px}
+  .wrap{max-width:900px;margin:0 auto;padding:16px}
+  header.top{background:linear-gradient(135deg,#2c2c4e,#ff4d94 140%);border:1px solid var(--line);border-radius:20px;padding:24px 22px;margin:12px 0;text-align:center}
+  header.top h1{margin:0 0 6px;font-size:28px;color:#fff}
+  header.top p{margin:3px 0;color:#e9e6ff;opacity:.95;font-size:15px}
+  .badge{display:inline-block;background:rgba(255,255,255,.18);border-radius:999px;padding:4px 12px;font-size:14px;margin-top:8px}
+  nav.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+  nav.tabs a{background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
+  nav.tabs a.active{background:var(--magenta);border-color:var(--magenta);color:#fff}
+  .save-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:10px 14px;font-size:13px;margin:10px 0}
+  .save-bar button{cursor:pointer;border:none;border-radius:10px;padding:8px 12px;font-weight:700;font-size:13px}
+  .btn-exp{background:#1e4d3a;color:#9af0c0} .btn-imp{background:#1e3a52;color:#9ad0f0} .btn-zero{background:#52222e;color:#ffb0c4}
+  #saveInfo{color:var(--ink2);margin-left:auto}
+  .audio-hint{background:var(--card);border:1px dashed var(--cian);border-radius:12px;padding:11px 14px;font-size:14px;color:var(--ink2);margin:10px 0}
+  .mesa{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:18px 20px;margin:16px 0}
+  .mesa h2{margin:0 0 4px;font-size:22px;color:var(--amar)}
+  .mesa .sub{color:var(--ink2);font-size:14px;margin:0 0 12px}
+  .btn-audio{background:var(--cian);border:none;color:#06282a;border-radius:8px;padding:3px 9px;font-size:13px;cursor:pointer;font-weight:900;margin-left:6px}
+  .vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:8px}
+  .vcard{background:var(--card2);border:1.5px solid var(--line);border-radius:13px;padding:11px 12px;display:flex;flex-direction:column;gap:3px}
+  .vcard .es{font-size:18px;font-weight:800;color:var(--cian);display:flex;align-items:center;justify-content:space-between}
+  .vcard .pt{font-size:14px;color:var(--ink)}
+  .op{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .op .pair{background:var(--card2);border:1.5px solid var(--magenta);border-radius:12px;padding:8px 12px;font-size:15px}
+  .op .pair b{color:var(--cian)}
+  table.conj{width:100%;border-collapse:collapse;margin-top:10px;font-size:15px}
+  table.conj th,table.conj td{border:1px solid var(--line);padding:8px 9px;text-align:left}
+  table.conj th{background:var(--card2);color:var(--amar)}
+  table.conj td .zco{color:var(--magenta);font-weight:800}
+  .ej{background:var(--card2);border-left:4px solid var(--cian);border-radius:8px;padding:8px 11px;margin:7px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .ej .pt-mini{color:var(--ink2);font-size:13px}
+  .postit{background:#3a3320;border:1px solid var(--amar);border-radius:12px;padding:12px 14px;margin:10px 0;color:#ffe9a8}
+  .postit b{color:var(--amar)}
+  .alerta{background:#3a1f2a;border:1px solid var(--magenta);border-radius:12px;padding:12px 14px;margin:10px 0;color:#ffc4da}
+  .alerta b{color:var(--magenta)}
+  .meses{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px;margin-top:8px}
+  .mcard{background:var(--card2);border:1.5px solid var(--line);border-radius:12px;padding:9px 11px;display:flex;align-items:center;justify-content:space-between;gap:6px}
+  .mcard .n{font-size:12px;color:var(--ink2)}
+  .mcard .es{font-weight:800;color:var(--cian)}
+  .hemi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .hemi .box{background:var(--card2);border:1.5px solid var(--line);border-radius:12px;padding:12px}
+  .hemi .box h4{margin:0 0 6px;color:var(--amar)}
+  .glos{background:var(--card);border:1.5px solid var(--amar);border-radius:16px;padding:16px 18px}
+  .gl{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px dashed var(--line);flex-wrap:wrap}
+  .gl:last-child{border-bottom:none}
+  .gl .w{font-weight:800;color:var(--cian);min-width:120px}
+  .gl .d{flex:1;font-size:14px;color:var(--ink)}
+  .footer-nav{display:flex;justify-content:space-between;margin:20px 0;gap:10px;flex-wrap:wrap}
+  .footer-nav a{background:var(--magenta);color:#fff;text-decoration:none;border-radius:12px;padding:12px 18px;font-weight:700}
+  small.muted{color:var(--ink2)}
+  .onoma{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .onoma .pop{background:var(--magenta);color:#fff;font-weight:900;border-radius:10px;padding:8px 14px;font-size:16px;transform:rotate(-3deg)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>🎨 Resumo — Taller de Historietas</h1>
+    <p><b>Espanhol · 6º ano · Colégio Coração Feliz</b></p>
+    <p>Capítulo 6 (estados de ánimo · presente · gustar) e Capítulo 7 (ocio · meses · imperativo · heterogenéricos)</p>
+    <span class="badge">📅 Prova: 05/10</span>
+  </header>
+
+  <nav class="tabs">
+    <a href="index.html">🏠 Início</a>
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a class="active" href="resumo.html">🗺️ Resumo</a>
+    <a href="simulado.html">📝 Simulado</a>
+  </nav>
+
+  <div class="save-bar">
+    <button class="btn-exp" onclick="exportar()">📥 Exportar</button>
+    <button class="btn-imp" onclick="abrirImport()">📤 Importar</button>
+    <button class="btn-zero" onclick="zerar()">🗑️ Zerar tudo</button>
+    <span id="saveInfo">—</span>
+  </div>
+
+  <div class="audio-hint">🔊 <b>Dica:</b> clique nos botões azuis para <b>ouvir</b> cada palavra e frase em espanhol. Cada carta mostra a palavra em espanhol e a tradução em português juntas — é só ler e ouvir!</div>
+
+  <!-- MESA 1 -->
+  <div class="mesa">
+    <h2>🎭 Mesa de las Emociones — Los estados de ánimo</h2>
+    <p class="sub">Capítulo 6, p.90 e 98 · como você se sente</p>
+    <div class="vocab" id="voc-animo"></div>
+
+    <div class="postit">
+      <b>⬌ Opuestos (contrários):</b> a prova adora pedir o contrário.
+    </div>
+    <div class="op">
+      <div class="pair"><b>contento</b> ↔ triste <button class="btn-audio" onclick="speak('contento, triste')">🔊</button></div>
+      <div class="pair"><b>preocupado</b> ↔ relajado <button class="btn-audio" onclick="speak('preocupado, relajado')">🔊</button></div>
+      <div class="pair"><b>entusiasmado</b> ↔ desanimado <button class="btn-audio" onclick="speak('entusiasmado, desanimado')">🔊</button></div>
+      <div class="pair"><b>calmo</b> ↔ furioso <button class="btn-audio" onclick="speak('calmo, furioso')">🔊</button></div>
+    </div>
+
+    <div class="postit" style="margin-top:14px">
+      <b>Emociones básicas (6):</b> alegría, tristeza, enojo, sorpresa, miedo y vergüenza.
+      <button class="btn-audio" onclick="speak('alegría, tristeza, enojo, sorpresa, miedo y vergüenza')">🔊</button>
+      <br><b>Funciones de las emociones:</b> adaptativa, social y motivacional.
+      <button class="btn-audio" onclick="speak('adaptativa, social y motivacional')">🔊</button>
+      <br><small>Tema transversal: a importância da <b>salud mental</b> (saúde mental).</small>
+    </div>
+  </div>
+
+  <!-- MESA 2 -->
+  <div class="mesa">
+    <h2>✍️ Mesa del Presente — Verbos con "z" (−zco)</h2>
+    <p class="sub">Capítulo 6, p.94 · a irregularidade é SÓ na 1ª pessoa do singular (yo → −zco)</p>
+    <div class="alerta"><b>Só o "yo" muda!</b> Em <b>nacer, conocer, crecer</b> a única forma diferente é a do <b>yo</b>, que ganha <b>−zco</b> (nazco, conozco, crezco). As outras pessoas são normais.</div>
+
+    <table class="conj">
+      <tr><th>Persona</th><th>nacer <button class="btn-audio" onclick="speak('nacer')">🔊</button></th><th>conocer <button class="btn-audio" onclick="speak('conocer')">🔊</button></th><th>crecer <button class="btn-audio" onclick="speak('crecer')">🔊</button></th></tr>
+      <tr><td>yo</td><td><span class="zco">nazco</span> <button class="btn-audio" onclick="speak('nazco')">🔊</button></td><td><span class="zco">conozco</span> <button class="btn-audio" onclick="speak('conozco')">🔊</button></td><td><span class="zco">crezco</span> <button class="btn-audio" onclick="speak('crezco')">🔊</button></td></tr>
+      <tr><td>tú / vos</td><td>naces / nacés</td><td>conoces / conocés</td><td>creces / crecés</td></tr>
+      <tr><td>él/ella/usted</td><td>nace</td><td>conoce</td><td>crece</td></tr>
+      <tr><td>nosotros(as)</td><td>nacemos</td><td>conocemos</td><td>crecemos</td></tr>
+      <tr><td>vosotros(as)</td><td>nacéis</td><td>conocéis</td><td>crecéis</td></tr>
+      <tr><td>ellos/ellas/ustedes</td><td>nacen</td><td>conocen</td><td>crecen</td></tr>
+    </table>
+    <div class="ej"><span>Yo <b>conozco</b> a María.</span><span class="pt-mini">→ Eu conheço a María.</span><button class="btn-audio" onclick="speak('Yo conozco a María')">🔊</button></div>
+    <div class="ej"><span>Mi hermano <b>crece</b> muy rápido.</span><span class="pt-mini">→ Meu irmão cresce muito rápido.</span><button class="btn-audio" onclick="speak('Mi hermano crece muy rápido')">🔊</button></div>
+  </div>
+
+  <!-- MESA 3 -->
+  <div class="mesa">
+    <h2>❤️ Mesa del Gusto — El verbo gustar</h2>
+    <p class="sub">Capítulo 6, p.95 e 98 · a forma depende DO QUE se gosta, não de quem gosta</p>
+    <div class="alerta">
+      <b>gusta</b> (singular) → quando o que se aprecia está no <b>singular</b> OU é um <b>verbo no infinitivo</b>.<br>
+      <b>gustan</b> (plural) → quando o que se aprecia está no <b>plural</b>.
+    </div>
+    <div class="ej"><span>Me <b>gusta</b> estudiar.</span><span class="pt-mini">→ Gosto de estudar (verbo no infinitivo).</span><button class="btn-audio" onclick="speak('Me gusta estudiar')">🔊</button></div>
+    <div class="ej"><span>Me <b>gusta</b> la clase de español.</span><span class="pt-mini">→ (singular: la clase)</span><button class="btn-audio" onclick="speak('Me gusta la clase de español')">🔊</button></div>
+    <div class="ej"><span>Me <b>gustan</b> las películas mexicanas.</span><span class="pt-mini">→ (plural: las películas)</span><button class="btn-audio" onclick="speak('Me gustan las películas mexicanas')">🔊</button></div>
+
+    <div class="postit" style="margin-top:14px">
+      <b>Pronombres (quem gosta):</b>
+      <table class="conj" style="margin-top:8px">
+        <tr><th>Pessoa</th><th>Pronome</th><th>+ gusta / gustan</th></tr>
+        <tr><td>(A mí)</td><td><b>me</b></td><td>me gusta / me gustan</td></tr>
+        <tr><td>(A ti / vos)</td><td><b>te</b></td><td>te gusta / te gustan</td></tr>
+        <tr><td>(A él/ella/usted)</td><td><b>le</b></td><td>le gusta / le gustan</td></tr>
+        <tr><td>(A nosotros)</td><td><b>nos</b></td><td>nos gusta / nos gustan</td></tr>
+        <tr><td>(A vosotros)</td><td><b>os</b></td><td>os gusta / os gustan</td></tr>
+        <tr><td>(A ellos/ellas/ustedes)</td><td><b>les</b></td><td>les gusta / les gustan</td></tr>
+      </table>
+      <small>Duas formas de montar: "Me gusta estudiar" = "A mí me gusta estudiar". A parte "A mí / A ti..." é opcional, serve para reforçar.</small>
+    </div>
+    <div class="ej"><span>A ellos <b>les gustan</b> las historietas de Condorito.</span><button class="btn-audio" onclick="speak('A ellos les gustan las historietas de Condorito')">🔊</button></div>
+    <div class="ej"><span>A mí y a mis amigos <b>nos gusta</b> pasear en el parque.</span><button class="btn-audio" onclick="speak('A mí y a mis amigos nos gusta pasear en el parque')">🔊</button></div>
+    <div class="ej"><span>¿<b>Os gustan</b> los días fríos?</span><button class="btn-audio" onclick="speak('¿Os gustan los días fríos?')">🔊</button></div>
+    <div class="ej"><span>A Elena <b>le gustan</b> las ideas de su amiga.</span><button class="btn-audio" onclick="speak('A Elena le gustan las ideas de su amiga')">🔊</button></div>
+  </div>
+
+  <!-- MESA 4 -->
+  <div class="mesa">
+    <h2>⚽ Mesa del Ocio — Actividades de ocio</h2>
+    <p class="sub">Capítulo 7, p.104 · o que fazemos no tempo livre</p>
+    <div class="vocab" id="voc-ocio"></div>
+    <div class="postit" style="margin-top:14px">
+      <b>Espacios públicos (onde fazer ocio):</b>
+      <div class="op" style="margin-top:6px">
+        <div class="pair"><b>plaza</b> <span style="color:var(--ink2)">praça</span> <button class="btn-audio" onclick="speak('plaza')">🔊</button></div>
+        <div class="pair"><b>parque</b> <span style="color:var(--ink2)">parque</span> <button class="btn-audio" onclick="speak('parque')">🔊</button></div>
+        <div class="pair"><b>museo</b> <span style="color:var(--ink2)">museu</span> <button class="btn-audio" onclick="speak('museo')">🔊</button></div>
+        <div class="pair"><b>biblioteca</b> <span style="color:var(--ink2)">biblioteca</span> <button class="btn-audio" onclick="speak('biblioteca')">🔊</button></div>
+        <div class="pair"><b>centro cultural</b> <span style="color:var(--ink2)">centro cultural</span> <button class="btn-audio" onclick="speak('centro cultural')">🔊</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MESA 5 -->
+  <div class="mesa">
+    <h2>📅 Calendario del Año — Los meses y las estaciones</h2>
+    <p class="sub">Capítulo 7, p.105 · os 12 meses e as estações nos dois hemisférios</p>
+    <button class="btn-audio" onclick="speak('enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre')" style="margin-bottom:6px">🔊 Ouvir todos os meses</button>
+    <div class="meses" id="meses"></div>
+
+    <div class="hemi">
+      <div class="box">
+        <h4>🌍 Hemisferio Norte</h4>
+        <p>junio, julio y agosto = <b>verano</b> (verão).<br>diciembre/enero/febrero = invierno.</p>
+        <button class="btn-audio" onclick="speak('En el Hemisferio Norte, junio, julio y agosto es verano')">🔊</button>
+      </div>
+      <div class="box">
+        <h4>🌎 Hemisferio Sur</h4>
+        <p>esses mesmos meses (jun/jul/ago) = <b>invierno</b>.<br>O <b>verano</b> é diciembre/enero/febrero (época das Navidades 🎄).</p>
+        <button class="btn-audio" onclick="speak('En el Hemisferio Sur, el verano es diciembre, enero y febrero')">🔊</button>
+      </div>
+    </div>
+    <div class="postit" style="margin-top:12px"><b>Dica:</b> o <b>ocio</b> (lazer) muda com a estação — no verano vamos à praia; no invierno ficamos mais em casa.</div>
+  </div>
+
+  <!-- MESA 6 -->
+  <div class="mesa">
+    <h2>📣 Mesa de Órdenes — El imperativo afirmativo</h2>
+    <p class="sub">Capítulo 7, p.108 (cai na síntese p.112) · serve para dar ordens, conselhos e instruções</p>
+    <h3 style="color:var(--cian);margin-bottom:4px">Regulares</h3>
+    <table class="conj">
+      <tr><th>Persona</th><th>caminar <button class="btn-audio" onclick="speak('caminar')">🔊</button></th><th>comer <button class="btn-audio" onclick="speak('comer')">🔊</button></th><th>partir <button class="btn-audio" onclick="speak('partir')">🔊</button></th></tr>
+      <tr><td>(tú)</td><td>caminá <button class="btn-audio" onclick="speak('caminá')">🔊</button></td><td>comé</td><td>partí</td></tr>
+      <tr><td>(usted)</td><td>camine</td><td>coma</td><td>parta</td></tr>
+      <tr><td>(nosotros)</td><td>caminemos</td><td>comamos</td><td>partamos</td></tr>
+      <tr><td>(vosotros)</td><td>caminad</td><td>comed</td><td>partid</td></tr>
+      <tr><td>(ustedes)</td><td>caminen</td><td>coman</td><td>partan</td></tr>
+    </table>
+    <h3 style="color:var(--cian);margin:14px 0 4px">Irregulares</h3>
+    <table class="conj">
+      <tr><th>Persona</th><th>hacer <button class="btn-audio" onclick="speak('hacer')">🔊</button></th><th>ir <button class="btn-audio" onclick="speak('ir')">🔊</button></th><th>salir <button class="btn-audio" onclick="speak('salir')">🔊</button></th></tr>
+      <tr><td>(tú)</td><td><span class="zco">haz</span> / hacé <button class="btn-audio" onclick="speak('haz')">🔊</button></td><td><span class="zco">ve</span> / andá</td><td><span class="zco">sal</span> / salí</td></tr>
+      <tr><td>(usted)</td><td>haga</td><td>vaya</td><td>salga</td></tr>
+      <tr><td>(nosotros)</td><td>hagamos</td><td>vayamos</td><td>salgamos</td></tr>
+      <tr><td>(vosotros)</td><td>haced</td><td>id</td><td>salid</td></tr>
+      <tr><td>(ustedes)</td><td>hagan</td><td>vayan</td><td>salgan</td></tr>
+    </table>
+    <div class="ej"><span>Cuando te levantes, <b>haz</b> la cama.</span><span class="pt-mini">→ Quando você se levantar, arrume a cama.</span><button class="btn-audio" onclick="speak('Cuando te levantes, haz la cama')">🔊</button></div>
+    <div class="ej"><span>Carmen, <b>salí</b> / <b>sal</b> que te estoy esperando.</span><button class="btn-audio" onclick="speak('Carmen, salí que te estoy esperando')">🔊</button></div>
+    <div class="ej"><span><b>Partan</b> cuanto antes.</span><span class="pt-mini">→ Partam o quanto antes.</span><button class="btn-audio" onclick="speak('Partan cuanto antes')">🔊</button></div>
+    <div class="ej"><span>Cuando visiten el restaurante de Juan, <b>coman</b> este postre.</span><button class="btn-audio" onclick="speak('Cuando visiten el restaurante de Juan, coman este postre')">🔊</button></div>
+  </div>
+
+  <!-- MESA 7 -->
+  <div class="mesa">
+    <h2>🔀 Mesa de los Falsos Amigos — Heterogenéricos</h2>
+    <p class="sub">Capítulo 7 · palavras cujo GÊNERO muda entre o português e o espanhol</p>
+    <div class="alerta"><b>Cuidado!</b> Em português pode ser feminino e em espanhol masculino (ou o contrário). Decore o artigo em espanhol!</div>
+    <table class="conj">
+      <tr><th>Espanhol</th><th>Português</th><th>Ouvir</th></tr>
+      <tr><td><b>el</b> puente</td><td><b>a</b> ponte (muda!)</td><td><button class="btn-audio" onclick="speak('el puente')">🔊</button></td></tr>
+      <tr><td><b>el</b> parque</td><td>o parque</td><td><button class="btn-audio" onclick="speak('el parque')">🔊</button></td></tr>
+      <tr><td><b>el</b> mensaje</td><td><b>a</b> mensagem (muda!)</td><td><button class="btn-audio" onclick="speak('el mensaje')">🔊</button></td></tr>
+      <tr><td><b>el</b> libro</td><td>o livro</td><td><button class="btn-audio" onclick="speak('el libro')">🔊</button></td></tr>
+      <tr><td><b>la</b> patineta</td><td>o skate (muda!)</td><td><button class="btn-audio" onclick="speak('la patineta')">🔊</button></td></tr>
+      <tr><td><b>la</b> señal</td><td>o sinal (muda!)</td><td><button class="btn-audio" onclick="speak('la señal')">🔊</button></td></tr>
+      <tr><td><b>la</b> bici</td><td>a bici(cleta)</td><td><button class="btn-audio" onclick="speak('la bici')">🔊</button></td></tr>
+    </table>
+  </div>
+
+  <!-- MESA 8 -->
+  <div class="mesa">
+    <h2>💥 Mesa de Viñetas — La historieta y las onomatopeyas</h2>
+    <p class="sub">Capítulo 7 (Hora de escribir) · a história em quadrinhos</p>
+    <p>A <b>historieta</b> (história em quadrinhos) tem características próprias:</p>
+    <ul>
+      <li>presença de <b>ilustraciones</b> (desenhos);</li>
+      <li>divisão em <b>viñetas</b> (os recuadros/quadrinhos);</li>
+      <li>uso de <b>globos de texto</b> (balões de fala);</li>
+      <li>presença de <b>onomatopeyas</b>.</li>
+    </ul>
+    <div class="postit"><b>Onomatopeya</b> = palavra que imita um som. Elas <b>mudam de um idioma para outro</b> (ex.: o cachorro faz "au au" em português e "guau guau" em espanhol).</div>
+    <div class="onoma">
+      <span class="pop" onclick="speak('guau guau')">guau guau 🔊</span>
+      <span class="pop" onclick="speak('plof')">plof 🔊</span>
+      <span class="pop" onclick="speak('zas')">zas 🔊</span>
+      <span class="pop" onclick="speak('pum')">pum 🔊</span>
+      <span class="pop" onclick="speak('muac')">muac 🔊</span>
+    </div>
+  </div>
+
+  <!-- GLOSARIO -->
+  <div class="glos">
+    <h2 style="margin-top:0;color:var(--amar)">📓 Glosario rápido</h2>
+    <div class="gl"><span class="w">estado de ánimo</span><span class="d">estado de ânimo, como a pessoa se sente</span><button class="btn-audio" onclick="speak('estado de ánimo')">🔊</button></div>
+    <div class="gl"><span class="w">gusta / gustan</span><span class="d">gosta — gusta (singular/infinitivo) · gustan (plural)</span><button class="btn-audio" onclick="speak('gusta, gustan')">🔊</button></div>
+    <div class="gl"><span class="w">ocio</span><span class="d">lazer, tempo livre</span><button class="btn-audio" onclick="speak('ocio')">🔊</button></div>
+    <div class="gl"><span class="w">estación</span><span class="d">estação do ano</span><button class="btn-audio" onclick="speak('estación')">🔊</button></div>
+    <div class="gl"><span class="w">imperativo</span><span class="d">modo verbal para dar ordens/conselhos</span><button class="btn-audio" onclick="speak('imperativo')">🔊</button></div>
+    <div class="gl"><span class="w">heterogenérico</span><span class="d">palavra que muda de gênero entre espanhol e português</span><button class="btn-audio" onclick="speak('heterogenérico')">🔊</button></div>
+    <div class="gl"><span class="w">viñeta</span><span class="d">o quadrinho (recuadro) da história</span><button class="btn-audio" onclick="speak('viñeta')">🔊</button></div>
+    <div class="gl"><span class="w">onomatopeya</span><span class="d">palavra que imita um som</span><button class="btn-audio" onclick="speak('onomatopeya')">🔊</button></div>
+  </div>
+
+  <div class="footer-nav">
+    <a href="quiz.html">← Voltar ao Quiz</a>
+    <a href="simulado.html">📝 Ir para o Simulado →</a>
+  </div>
+  <p style="text-align:center"><small class="muted">Feito com carinho para o(a) jovem aprendiz. Conteúdo dos capítulos 6 e 7 do livro de Espanhol (CCF).</small></p>
+</div>
+
+<div class="save-bar" id="importModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;align-items:center;justify-content:center">
+  <div style="background:var(--card);border:1.5px solid var(--amar);border-radius:16px;padding:20px;max-width:480px;width:92%">
+    <h3 style="margin-top:0">📤 Importar</h3>
+    <p style="font-size:14px">Cole aqui o texto que você exportou antes:</p>
+    <textarea id="importText" style="width:100%;min-height:110px;background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px"></textarea>
+    <div style="margin-top:10px;display:flex;gap:8px">
+      <button class="btn-imp" onclick="fazerImport()">Importar</button>
+      <button class="btn-zero" onclick="fecharImport()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== ÁUDIO (es-ES, rate=1) =====
+function speak(txt){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(txt);
+  u.lang='es-ES'; u.rate=1;
+  const vs=window.speechSynthesis.getVoices();
+  const es=vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es'));
+  if(es) u.voice=es;
+  window.speechSynthesis.speak(u);
+}
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices(); }
+
+// ===== VOCABULÁRIO (cards FIXOS: espanhol + português juntos) =====
+const ANIMO=[
+ ["contento","contente"],["feliz","feliz"],["triste","triste"],["asustado","assustado"],
+ ["sorprendido","surpreso"],["orgulloso","orgulhoso"],["chistoso","engraçado"],["molesto","incomodado"],
+ ["aburrido","entediado"],["enojado","bravo/zangado"],["nervioso","nervoso"],["tranquilo","tranquilo"],
+ ["cansado","cansado"],["entusiasmado","entusiasmado"],["avergonzado","envergonhado"],["desanimado","desanimado"],
+ ["relajado","relaxado"],["preocupado","preocupado"],["calmo","calmo"],["enfadado","chateado/irritado"],
+ ["agradecido","agradecido/grato"]
+];
+const OCIO=[
+ ["caminar","caminhar"],["correr","correr"],["nadar","nadar"],["andar/montar en bici","andar de bici"],
+ ["andar en patineta","andar de skate"],["patinar en línea","andar de patins (in-line)"],
+ ["leer","ler"],["ver obras de arte","ver obras de arte"]
+];
+const MESES=[
+ "enero","febrero","marzo","abril","mayo","junio",
+ "julio","agosto","septiembre","octubre","noviembre","diciembre"
+];
+const MESES_PT=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+
+function cardVocab(es,pt){
+  // palavra do áudio = só a forma espanhola (sem barras alternativas confundirem)
+  const fala=es.replace(/\/.*$/,'').trim();
+  return `<div class="vcard"><div class="es">${es}<button class="btn-audio" onclick="speak('${fala.replace(/'/g,"\\'")}')">🔊</button></div><div class="pt">${pt}</div></div>`;
+}
+function montar(){
+  document.getElementById('voc-animo').innerHTML=ANIMO.map(v=>cardVocab(v[0],v[1])).join('');
+  document.getElementById('voc-ocio').innerHTML=OCIO.map(v=>cardVocab(v[0],v[1])).join('');
+  document.getElementById('meses').innerHTML=MESES.map((m,i)=>
+    `<div class="mcard"><div><span class="n">${i+1}.</span> <span class="es">${m}</span><br><span class="n">${MESES_PT[i]}</span></div><button class="btn-audio" onclick="speak('${m}')">🔊</button></div>`
+  ).join('');
+}
+
+// ===== SALVAMENTO + ROLAGEM (para relatório dos pais) =====
+const KEY="esp6_cap6-7_resumo_v1";
+let store={maxScroll:0};
+const mem={};
+function load(){
+  try{ const r=localStorage.getItem(KEY); if(r) store=JSON.parse(r); }
+  catch(e){ try{ store=mem[KEY]?JSON.parse(mem[KEY]):{maxScroll:0}; }catch(_){ store={maxScroll:0}; } }
+  if(store.maxScroll==null) store.maxScroll=0;
+}
+function save(){
+  store.quando=new Date().toLocaleString('pt-BR');
+  const raw=JSON.stringify(store);
+  try{ localStorage.setItem(KEY,raw); }catch(e){ mem[KEY]=raw; }
+  const el=document.getElementById('saveInfo'); if(el) el.textContent="💾 Salvo "+store.quando;
+}
+function trackScroll(){
+  const h=document.documentElement;
+  const total=h.scrollHeight-h.clientHeight;
+  const pct= total>0 ? Math.round((h.scrollTop||window.scrollY)/total*100) : 100;
+  if(pct>store.maxScroll){ store.maxScroll=Math.min(100,pct); save(); }
+}
+window.addEventListener('scroll',trackScroll,{passive:true});
+
+function exportar(){
+  const data=JSON.stringify(store,null,2);
+  const blob=new Blob([data],{type:"application/json"});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download="resumo-espanhol-6ano.json"; a.click();
+}
+function abrirImport(){ document.getElementById('importModal').style.display="flex"; }
+function fecharImport(){ document.getElementById('importModal').style.display="none"; }
+function fazerImport(){
+  try{ const t=document.getElementById('importText').value; store=JSON.parse(t); if(store.maxScroll==null)store.maxScroll=0; save(); fecharImport(); }
+  catch(e){ document.getElementById('importText').value="⚠️ Texto inválido. Cole o conteúdo exportado.\n\n"+document.getElementById('importText').value; }
+}
+function zerar(){ store={maxScroll:0}; try{ localStorage.removeItem(KEY); }catch(e){} save(); }
+
+// ===== INÍCIO =====
+montar(); load();
+if(store.quando){ document.getElementById('saveInfo').textContent="💾 Salvo "+store.quando; }
+save();
+</script>
+</body>
+</html>
