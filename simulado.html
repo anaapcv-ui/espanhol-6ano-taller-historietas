@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado — Espanhol 6º ano | Taller de Historietas 🎨</title>
+<style>
+  :root{
+    --bg:#16162a; --bg2:#1e1e38; --card:#24243f; --card2:#2c2c4e;
+    --cian:#2ec4c4; --magenta:#ff4d94; --amar:#ffd23f;
+    --ink:#ece9f5; --ink2:#a9a6c4; --line:#3a3a5e; --ok:#43e97b; --red:#ff5d7a;
+    --navy:#0f1a33;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  header.top{background:var(--navy);border:1px solid var(--line);border-top:6px solid var(--magenta);border-radius:16px;padding:22px;margin:12px 0;text-align:center}
+  header.top h1{margin:0 0 6px;font-size:25px;color:#fff}
+  header.top p{margin:3px 0;color:#cfe0ff;font-size:15px}
+  nav.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+  nav.tabs a{background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
+  nav.tabs a.active{background:var(--magenta);border-color:var(--magenta);color:#fff}
+  .save-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:10px 14px;font-size:13px;margin:10px 0}
+  .save-bar button{cursor:pointer;border:none;border-radius:10px;padding:8px 12px;font-weight:700;font-size:13px}
+  .btn-exp{background:#1e4d3a;color:#9af0c0} .btn-imp{background:#1e3a52;color:#9ad0f0} .btn-zero{background:#52222e;color:#ffb0c4}
+  #saveInfo{color:var(--ink2);margin-left:auto}
+  .btn-audio{background:var(--cian);border:none;color:#06282a;border-radius:8px;padding:2px 9px;font-size:14px;cursor:pointer;font-weight:900;margin-left:6px}
+  .q{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:15px 17px;margin:13px 0}
+  .q .num{font-size:13px;color:var(--amar);font-weight:800}
+  .q .badge{font-size:11px;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--ink2);margin-left:6px}
+  .q .enun{font-weight:600;margin:5px 0 10px;font-size:17px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card2);border:1.5px solid var(--line);color:var(--ink);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer;font-size:16px}
+  .opt.sel{border-color:var(--cian);background:#18323f}
+  .opt.ok{background:#11402b;border-color:var(--ok);color:#b6f5cf}
+  .opt.no{background:#401b26;border-color:var(--red);color:#ffc0cf}
+  input.fill{background:var(--bg2);color:var(--ink);border:1.5px solid var(--line);border-radius:9px;padding:9px 11px;font-size:16px;width:200px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}
+  .chip{background:var(--card2);border:1.5px solid var(--line);color:var(--ink);border-radius:9px;padding:7px 12px;cursor:pointer;font-size:16px}
+  .chip.used{opacity:.35;pointer-events:none}
+  .answer-line{min-height:40px;background:var(--bg2);border:1.5px dashed var(--cian);border-radius:9px;padding:8px 10px;margin:6px 0;font-size:16px;color:var(--cian)}
+  .mini{background:none;border:1px solid var(--line);color:var(--ink2);border-radius:8px;padding:4px 10px;cursor:pointer;font-size:13px}
+  .gab{margin-top:9px;border-radius:10px;padding:10px 12px;font-size:15px;display:none}
+  .gab.show{display:block}
+  .gab.c{background:#11402b;color:#b6f5cf;border:1px solid var(--ok)}
+  .gab.w{background:#3a1f2a;color:#ffc4da;border:1px solid var(--red)}
+  .corrigir{display:block;width:100%;background:var(--magenta);color:#fff;border:none;border-radius:14px;padding:15px;font-weight:900;font-size:19px;cursor:pointer;margin:16px 0}
+  .final{background:var(--card);border:2px solid var(--amar);border-radius:18px;padding:22px;margin:16px 0;text-align:center;display:none}
+  .final.show{display:block}
+  .final .code{font-size:26px;font-weight:900;color:var(--amar);letter-spacing:2px;margin:10px 0;background:var(--bg2);border-radius:10px;padding:10px}
+  .footer-nav{display:flex;justify-content:space-between;margin:20px 0;gap:10px;flex-wrap:wrap}
+  .footer-nav a{background:var(--magenta);color:#fff;text-decoration:none;border-radius:12px;padding:12px 18px;font-weight:800}
+  small.muted{color:var(--ink2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>📝 Simulado — Taller de Historietas</h1>
+    <p><b>Espanhol · 6º ano · Colégio Coração Feliz</b></p>
+    <p>Capítulos 6 e 7 · 25 questões · responda tudo e clique em <b>Corregir</b></p>
+  </header>
+
+  <nav class="tabs">
+    <a href="index.html">🏠 Início</a>
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a href="resumo.html">🗺️ Resumo</a>
+    <a class="active" href="simulado.html">📝 Simulado</a>
+  </nav>
+
+  <div class="save-bar">
+    <button class="btn-exp" onclick="exportar()">📥 Exportar</button>
+    <button class="btn-imp" onclick="abrirImport()">📤 Importar</button>
+    <button class="btn-zero" onclick="zerar()">🗑️ Zerar tudo</button>
+    <span id="saveInfo">—</span>
+  </div>
+
+  <div id="sim"></div>
+
+  <button class="corrigir" onclick="corrigir()">✅ Corregir el simulado</button>
+
+  <div class="final" id="final">
+    <h2>📊 Resultado</h2>
+    <p><b id="fScore"></b></p>
+    <p>Mostre este código para um responsável ver o relatório:</p>
+    <div class="code" id="fCode">SIM-00-XX</div>
+    <p id="fMsg"></p>
+  </div>
+
+  <div class="footer-nav">
+    <a href="resumo.html">← Voltar ao Resumo</a>
+    <a href="index.html">🏠 Início</a>
+  </div>
+  <p style="text-align:center"><small class="muted">Feito com carinho para o(a) jovem aprendiz. Capítulos 6 e 7 do livro de Espanhol (CCF).</small></p>
+</div>
+
+<div id="importModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;align-items:center;justify-content:center">
+  <div style="background:var(--card);border:1.5px solid var(--amar);border-radius:16px;padding:20px;max-width:480px;width:92%">
+    <h3 style="margin-top:0">📤 Importar</h3>
+    <textarea id="importText" style="width:100%;min-height:110px;background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px"></textarea>
+    <div style="margin-top:10px;display:flex;gap:8px">
+      <button class="btn-imp" onclick="fazerImport()">Importar</button>
+      <button class="btn-zero" onclick="fecharImport()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function speak(txt){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(txt); u.lang='es-ES'; u.rate=1;
+  const vs=window.speechSynthesis.getVoices();
+  const es=vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es')); if(es) u.voice=es;
+  window.speechSynthesis.speak(u);
+}
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices(); }
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function shuffle(arr,seed){const r=mulberry32(seed);const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function norm(s){ return (s||"").toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9ñ\s]/g,'').replace(/\s+/g,' ').trim(); }
+
+// ===== 25 QUESTÕES (mc / fill / order) =====
+const QS=[
+ // --- MC ---
+ {type:"mc", enun:"Qual é o OPOSTO de <b>preocupado</b>?", opts:[{t:"relajado",ok:true},{t:"nervioso",ok:false},{t:"asustado",ok:false},{t:"enojado",ok:false}], fb:"preocupado ↔ <b>relajado</b>."},
+ {type:"mc", enun:"Qual é o OPOSTO de <b>entusiasmado</b>?", opts:[{t:"desanimado",ok:true},{t:"contento",ok:false},{t:"feliz",ok:false},{t:"orgulloso",ok:false}], fb:"entusiasmado ↔ <b>desanimado</b>."},
+ {type:"mc", enun:"Qual é o OPOSTO de <b>calmo</b>?", opts:[{t:"furioso",ok:true},{t:"tranquilo",ok:false},{t:"relajado",ok:false},{t:"cansado",ok:false}], fb:"calmo ↔ <b>furioso</b>."},
+ {type:"mc", enun:"Qual palavra significa <b>'bravo / zangado'</b>?", opts:[{t:"enojado",ok:true},{t:"contento",ok:false},{t:"agradecido",ok:false},{t:"chistoso",ok:false}], fb:"<b>enojado</b> = bravo/zangado."},
+ {type:"mc", enun:"Qual lista mostra as <b>emociones básicas</b>?", opts:[{t:"alegría, tristeza, enojo, sorpresa, miedo y vergüenza",ok:true},{t:"parque, plaza, museo, biblioteca",ok:false},{t:"enero, febrero, marzo, abril",ok:false},{t:"nazco, conozco, crezco, gusto",ok:false}], fb:"São seis: alegría, tristeza, enojo, sorpresa, miedo y vergüenza."},
+ {type:"mc", enun:"As <b>funciones</b> das emoções são:", opts:[{t:"adaptativa, social y motivacional",ok:true},{t:"singular, plural y neutra",ok:false},{t:"norte, sur y centro",ok:false},{t:"pasado, presente y futuro",ok:false}], fb:"As funções são adaptativa, social e motivacional."},
+ {type:"mc", enun:"Complete: 'Yo ______ muy rápido.' (verbo crecer)", opts:[{t:"crezco",ok:true},{t:"crece",ok:false},{t:"creces",ok:false},{t:"crecemos",ok:false}], fb:"Com 'yo' → <b>crezco</b> (−zco)."},
+ {type:"mc", enun:"Complete: 'Tú ______ en Brasil.' (verbo nacer)", opts:[{t:"naces",ok:true},{t:"nazco",ok:false},{t:"nace",ok:false},{t:"nacen",ok:false}], fb:"Com 'tú' → <b>naces</b> (só o 'yo' é 'nazco')."},
+ {type:"mc", audio:"Me gusta bailar", enun:"Complete: 'Me ______ bailar.'", opts:[{t:"gusta",ok:true},{t:"gustan",ok:false},{t:"gustas",ok:false},{t:"gustamos",ok:false}], fb:"Antes de infinitivo (bailar) → <b>gusta</b>."},
+ {type:"mc", enun:"Complete: 'A nosotros ______ gusta pasear.'", opts:[{t:"nos",ok:true},{t:"les",ok:false},{t:"os",ok:false},{t:"me",ok:false}], fb:"Para 'nosotros' o pronome é <b>nos</b>."},
+ {type:"mc", enun:"Qual destas é uma <b>actividad de ocio</b>?", opts:[{t:"patinar en línea",ok:true},{t:"biblioteca",ok:false},{t:"centro cultural",ok:false},{t:"plaza",ok:false}], fb:"<b>patinar en línea</b> é atividade; os outros são lugares."},
+ {type:"mc", enun:"Qual destes é um <b>espacio público</b>?", opts:[{t:"museo",ok:true},{t:"correr",ok:false},{t:"nadar",ok:false},{t:"leer",ok:false}], fb:"<b>museo</b> é lugar; os outros são atividades."},
+ {type:"mc", enun:"Qual mês vem DEPOIS de <b>agosto</b>?", opts:[{t:"septiembre",ok:true},{t:"julio",ok:false},{t:"octubre",ok:false},{t:"noviembre",ok:false}], fb:"Depois de agosto vem <b>septiembre</b>."},
+ {type:"mc", enun:"No <b>Hemisferio Norte</b>, junho, julho e agosto são:", opts:[{t:"verano",ok:true},{t:"invierno",ok:false},{t:"otoño",ok:false},{t:"primavera",ok:false}], fb:"No Norte, jun/jul/ago = <b>verano</b>."},
+ {type:"mc", audio:"ve", enun:"Qual é o imperativo (tú) do verbo <b>ir</b>?", opts:[{t:"ve",ok:true},{t:"va",ok:false},{t:"vas",ok:false},{t:"voy",ok:false}], fb:"Imperativo de ir no 'tú' → <b>ve</b> (ou 'andá')."},
+ {type:"mc", audio:"guau guau", enun:"Como o cachorro faz em espanhol (onomatopeya)?", opts:[{t:"guau guau",ok:true},{t:"au au",ok:false},{t:"woof woof",ok:false},{t:"miau miau",ok:false}], fb:"Em espanhol o cachorro faz <b>guau guau</b> (onomatopeyas mudam de idioma)."},
+ // --- FILL ---
+ {type:"fill", enun:"Complete com o verbo <b>conocer</b> (yo): 'Yo ______ a tu hermano.'", resp:["conozco"], fb:"'yo' → <b>conozco</b>."},
+ {type:"fill", enun:"Complete com <b>gusta</b> ou <b>gustan</b>: 'A mí me ______ las historietas.'", resp:["gustan"], fb:"'las historietas' é plural → <b>gustan</b>."},
+ {type:"fill", enun:"Complete com o imperativo de <b>hacer</b> (tú): '______ la tarea.'", resp:["haz"], fb:"Imperativo irregular → <b>haz</b>."},
+ {type:"fill", enun:"Complete com o artigo certo (el/la): '______ puente' (heterogenérico).", resp:["el"], fb:"Em espanhol é <b>el puente</b> (masculino)."},
+ {type:"fill", enun:"Complete: 'En el Hemisferio Sur, enero es ______.' (estação)", resp:["verano","el verano"], fb:"No Sul, janeiro é <b>verano</b>."},
+ // --- ORDER ---
+ {type:"order", enun:"Ordene as palavras: formar a frase 'gosto de ler'.", words:["gusta","me","leer"], ans:"me gusta leer", fb:"Frase certa: <b>Me gusta leer</b>."},
+ {type:"order", enun:"Ordene as palavras: dizer 'hoje estou contente'.", words:["estoy","hoy","contento"], ans:"hoy estoy contento", fb:"Frase certa: <b>Hoy estoy contento</b>."},
+ {type:"order", enun:"Ordene as palavras: formar 'eu gosto dos filmes' (plural).", words:["gustan","me","las","películas"], ans:"me gustan las películas", fb:"Frase certa: <b>Me gustan las películas</b>."},
+ {type:"order", enun:"Ordene as palavras: formar 'eu conheço a María'.", words:["conozco","yo","a","maría"], ans:"yo conozco a maría", fb:"Frase certa: <b>Yo conozco a María</b>."}
+];
+
+const KEY="esp6_cap6-7_simulado_v1";
+let store={resp:{},order:{},acertos:0,respondidas:0,total:QS.length,yy:null,corrigido:false};
+const mem={};
+function load(){
+  try{const r=localStorage.getItem(KEY); if(r) store=JSON.parse(r);}catch(e){try{store=mem[KEY]?JSON.parse(mem[KEY]):store;}catch(_){}}
+  if(!store.resp) store.resp={}; if(!store.order) store.order={};
+  store.total=QS.length;
+  if(!store.yy){ const L="ABCDEFGHJKLMNPQRSTUVWXYZ"; store.yy=L[Math.floor(Math.random()*L.length)]+L[Math.floor(Math.random()*L.length)]; }
+}
+function save(){
+  store.quando=new Date().toLocaleString('pt-BR');
+  const raw=JSON.stringify(store);
+  try{localStorage.setItem(KEY,raw);}catch(e){mem[KEY]=raw;}
+  const el=document.getElementById('saveInfo'); if(el) el.textContent="💾 Salvo "+store.quando;
+}
+
+function render(){
+  const cont=document.getElementById('sim'); cont.innerHTML="";
+  QS.forEach((q,qi)=>{
+    const div=document.createElement('div'); div.className="q";
+    const badge = q.type==="mc"?"múltipla escolha":(q.type==="fill"?"completar":"ordenar");
+    let html=`<div class="num">Pregunta ${qi+1} de ${QS.length} <span class="badge">${badge}</span></div>`;
+    html+=`<div class="enun">${q.enun}${q.audio?` <button class="btn-audio" onclick="speak('${q.audio.replace(/'/g,"\\'")}')">🔊</button>`:""}</div>`;
+    if(q.type==="mc"){
+      const opts=shuffle(q.opts, qi*131+5);
+      const chosen=store.resp[qi];
+      opts.forEach((o,oi)=>{
+        let cls="opt";
+        if(store.corrigido){ if(o.ok) cls+=" ok"; else if(o.t===chosen) cls+=" no"; }
+        else if(o.t===chosen) cls+=" sel";
+        html+=`<button class="${cls}" ${store.corrigido?'disabled':''} onclick="pick(${qi},'${o.t.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')">${String.fromCharCode(97+oi)}) ${o.t}</button>`;
+      });
+    } else if(q.type==="fill"){
+      const v=store.resp[qi]||"";
+      html+=`<input class="fill" id="f${qi}" value="${(v+'').replace(/"/g,'&quot;')}" ${store.corrigido?'disabled':''} oninput="typeFill(${qi})" placeholder="escreva aqui">`;
+    } else if(q.type==="order"){
+      const chosenArr=store.order[qi]||[];
+      const words=shuffle(q.words, qi*149+3);
+      html+=`<div class="answer-line" id="al${qi}">${chosenArr.length?chosenArr.join(' '):'<span style="color:var(--ink2)">clique nas palavras na ordem certa…</span>'}</div>`;
+      html+=`<div class="chips">`;
+      words.forEach((w,wi)=>{
+        const used = countUsed(chosenArr,w) > countBefore(words,wi,w) ? true:false;
+        html+=`<button class="chip${used?' used':''}" ${store.corrigido?'disabled':''} onclick="addWord(${qi},'${w.replace(/'/g,"\\'")}')">${w}</button>`;
+      });
+      html+=`</div>`;
+      if(!store.corrigido) html+=`<button class="mini" onclick="clearOrder(${qi})">↺ limpar</button>`;
+    }
+    html+=`<div class="gab" id="g${qi}"></div>`;
+    div.innerHTML=html;
+    cont.appendChild(div);
+  });
+}
+
+// contagem para marcar chips usados corretamente quando há palavras repetidas
+function countUsed(arr,w){ return arr.filter(x=>x===w).length; }
+function countBefore(words,idx,w){ let c=0; for(let i=0;i<idx;i++){ if(words[i]===w) c++; } return c; }
+
+function pick(qi,txt){ if(store.corrigido) return; store.resp[qi]=txt; save(); render(); }
+function typeFill(qi){ store.resp[qi]=document.getElementById('f'+qi).value; save(); }
+function addWord(qi,w){ if(store.corrigido) return; if(!store.order[qi]) store.order[qi]=[]; store.order[qi].push(w); save(); render(); }
+function clearOrder(qi){ store.order[qi]=[]; save(); render(); }
+
+function corrigir(){
+  // conferir se tudo respondido
+  let faltando=0;
+  QS.forEach((q,qi)=>{
+    if(q.type==="order"){ if(!(store.order[qi]&&store.order[qi].length===q.words.length)) faltando++; }
+    else { const v=store.resp[qi]; if(v==null||(''+v).trim()==="") faltando++; }
+  });
+  if(faltando>0){ alertaFalta(faltando); return; }
+  store.corrigido=true;
+  let ac=0;
+  QS.forEach((q,qi)=>{
+    let ok=false;
+    if(q.type==="mc"){ const o=q.opts.find(x=>x.t===store.resp[qi]); ok=!!(o&&o.ok); }
+    else if(q.type==="fill"){ ok=q.resp.some(r=>norm(r)===norm(store.resp[qi])); }
+    else if(q.type==="order"){ ok = norm((store.order[qi]||[]).join(' '))===norm(q.ans); }
+    if(ok) ac++;
+    const g=document.getElementById('g'+qi);
+    g.className="gab show "+(ok?"c":"w");
+    let extra="";
+    if(!ok){
+      if(q.type==="fill") extra=" (resposta certa: <b>"+q.resp[0]+"</b>)";
+      if(q.type==="order") extra=" (ordem certa: <b>"+q.ans+"</b>)";
+    }
+    g.innerHTML=(ok?"✅ ¡Correcto! ":"❌ Revise. ")+q.fb+extra;
+  });
+  store.acertos=ac; store.respondidas=QS.length;
+  save(); render();
+  // re-aplicar gabaritos após render
+  QS.forEach((q,qi)=>{
+    let ok=false;
+    if(q.type==="mc"){ const o=q.opts.find(x=>x.t===store.resp[qi]); ok=!!(o&&o.ok); }
+    else if(q.type==="fill"){ ok=q.resp.some(r=>norm(r)===norm(store.resp[qi])); }
+    else if(q.type==="order"){ ok = norm((store.order[qi]||[]).join(' '))===norm(q.ans); }
+    const g=document.getElementById('g'+qi);
+    if(g){ g.className="gab show "+(ok?"c":"w");
+      let extra=""; if(!ok){ if(q.type==="fill") extra=" (resposta certa: <b>"+q.resp[0]+"</b>)"; if(q.type==="order") extra=" (ordem certa: <b>"+q.ans+"</b>)"; }
+      g.innerHTML=(ok?"✅ ¡Correcto! ":"❌ Revise. ")+q.fb+extra;
+    }
+  });
+  const xx=String(ac).padStart(2,'0');
+  document.getElementById('fScore').textContent=ac+" de "+QS.length+" acertos";
+  document.getElementById('fCode').textContent="SIM-"+xx+"-"+store.yy;
+  const msg=document.getElementById('fMsg');
+  msg.textContent = ac>=20? "🌟 ¡Excelente! Você está pronto(a)." : (ac>=13? "👍 Bom! Revise os erros no gabarito acima." : "💪 Vale reler o Resumo e a Leitura e tentar de novo.");
+  document.getElementById('final').classList.add('show');
+  document.getElementById('final').scrollIntoView({behavior:'smooth'});
+}
+
+function alertaFalta(n){
+  const f=document.getElementById('final');
+  f.classList.add('show');
+  document.getElementById('fScore').textContent="Ainda faltam "+n+" questão(ões) para responder.";
+  document.getElementById('fCode').textContent="— — —";
+  document.getElementById('fMsg').textContent="Responda todas antes de corrigir. 💪";
+  f.scrollIntoView({behavior:'smooth'});
+}
+
+function exportar(){ const blob=new Blob([JSON.stringify(store,null,2)],{type:"application/json"}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download="simulado-espanhol-6ano.json"; a.click(); }
+function abrirImport(){ document.getElementById('importModal').style.display="flex"; }
+function fecharImport(){ document.getElementById('importModal').style.display="none"; }
+function fazerImport(){ try{ store=JSON.parse(document.getElementById('importText').value); if(!store.resp)store.resp={}; if(!store.order)store.order={}; save(); render(); fecharImport(); if(store.corrigido) corrigir(); }catch(e){ document.getElementById('importText').value="⚠️ Texto inválido.\n\n"+document.getElementById('importText').value; } }
+function zerar(){ const yy=store.yy; store={resp:{},order:{},acertos:0,respondidas:0,total:QS.length,yy:yy,corrigido:false}; try{localStorage.removeItem(KEY);}catch(e){} save(); render(); document.getElementById('final').classList.remove('show'); }
+
+load(); render();
+if(store.quando){ document.getElementById('saveInfo').textContent="💾 Salvo "+store.quando; }
+if(store.corrigido){ corrigir(); }
+</script>
+</body>
+</html>
