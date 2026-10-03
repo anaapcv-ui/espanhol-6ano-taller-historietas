@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitura Guiada — Espanhol 6º ano | Taller de Historietas 🎨</title>
+<style>
+  :root{
+    --bg:#16162a; --bg2:#1e1e38; --card:#24243f; --card2:#2c2c4e;
+    --cian:#2ec4c4; --magenta:#ff4d94; --amar:#ffd23f;
+    --ink:#ece9f5; --ink2:#a9a6c4; --line:#3a3a5e; --ok:#43e97b; --warn:#ffd23f; --red:#ff5d7a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:17px}
+  .wrap{max-width:900px;margin:0 auto;padding:16px}
+  header.top{background:linear-gradient(135deg,#2c2c4e,#2ec4c4 160%);border:1px solid var(--line);border-radius:20px;padding:24px 22px;margin:12px 0;text-align:center}
+  header.top h1{margin:0 0 6px;font-size:27px;color:#fff}
+  header.top p{margin:3px 0;color:#e9e6ff;opacity:.95;font-size:15px}
+  .badge{display:inline-block;background:rgba(255,255,255,.18);border-radius:999px;padding:4px 12px;font-size:14px;margin-top:8px}
+  nav.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+  nav.tabs a{background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
+  nav.tabs a.active{background:var(--cian);border-color:var(--cian);color:#06282a}
+  .howto{background:var(--card);border-left:6px solid var(--amar);border-radius:14px;padding:14px 18px;margin:10px 0}
+  .howto h2{margin:0 0 6px;color:var(--amar);font-size:20px}
+  .save-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:10px 14px;font-size:13px;margin:10px 0}
+  .save-bar button{cursor:pointer;border:none;border-radius:10px;padding:8px 12px;font-weight:700;font-size:13px}
+  .btn-exp{background:#1e4d3a;color:#9af0c0} .btn-imp{background:#1e3a52;color:#9ad0f0} .btn-zero{background:#52222e;color:#ffb0c4}
+  #saveInfo{color:var(--ink2);margin-left:auto}
+  .btn-audio{background:var(--cian);border:none;color:#06282a;border-radius:8px;padding:2px 8px;font-size:13px;cursor:pointer;font-weight:900;margin-left:4px}
+  .block{border:1px solid var(--line);border-radius:16px;margin:16px 0;overflow:hidden;background:var(--card)}
+  .block.locked{opacity:.5}
+  .block-head{padding:14px 18px;font-weight:700;font-size:19px;color:#06282a;display:flex;align-items:center;gap:10px;cursor:pointer}
+  .block-body{padding:6px 18px 18px}
+  .block-status{margin-left:auto;font-size:14px;background:rgba(0,0,0,.18);border-radius:999px;padding:2px 10px;color:#06282a}
+  .h-cian{background:var(--cian)} .h-mag{background:var(--magenta);color:#fff} .h-mag .block-status{color:#fff} .h-amar{background:var(--amar)}
+  .txt{background:var(--card2);border-radius:12px;padding:12px 14px;margin:10px 0}
+  .txt p{margin:8px 0}
+  .keyword{background:#4a3a1e;color:var(--amar);border-radius:5px;padding:0 4px;font-weight:700}
+  .completar{background:#14323a;border:1px solid var(--cian);border-radius:12px;padding:12px 14px;margin:12px 0}
+  .completar .cq{font-weight:600;margin-bottom:8px}
+  .completar input{background:var(--bg2);color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;font-size:16px;width:160px}
+  .completar button.ck{background:var(--cian);border:none;color:#06282a;border-radius:9px;padding:7px 13px;font-weight:800;cursor:pointer;margin-left:6px}
+  .completar .fb{margin-top:8px;font-size:15px;display:none}
+  .completar .fb.ok{display:block;color:var(--ok)} .completar .fb.no{display:block;color:var(--red)}
+  .q{background:var(--card2);border-radius:12px;padding:12px 14px;margin:12px 0;border:1px solid var(--line)}
+  .q.red{border:2px solid var(--red);background:#3a1f2a}
+  .q .tag{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:2px 8px;margin-bottom:6px}
+  .tag-con{background:#1e3a52;color:#9ad0f0} .tag-apl{background:#1e4d3a;color:#9af0c0}
+  .q label{font-weight:600;display:block;margin-bottom:6px}
+  .q textarea{width:100%;min-height:62px;background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px;font-family:inherit;font-size:16px;resize:vertical}
+  .alert{border-radius:10px;padding:10px 12px;margin:8px 0;font-size:15px;display:none}
+  .alert.copy{background:#4a3a1e;border:1px solid var(--warn);color:#ffe9a8;display:block}
+  .alert.redwarn{background:#3a1f2a;border:1px solid var(--red);color:#ffc4da;display:block}
+  .modelo{display:none;margin-top:10px;background:#14323a;border:1px solid var(--cian);border-radius:10px;padding:10px 12px}
+  .modelo.show{display:block}
+  .modelo .mtitle{font-weight:700;color:var(--cian);margin-bottom:4px}
+  .chk{margin-top:8px}
+  .chk .cline{display:flex;align-items:center;gap:8px;margin:6px 0;flex-wrap:wrap}
+  .chk .cline span{flex:1;min-width:180px}
+  .chk button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:4px 12px;cursor:pointer;font-weight:600}
+  .chk button.sel-sim{background:var(--ok);color:#06321a;border-color:var(--ok)}
+  .chk button.sel-nao{background:var(--red);color:#fff;border-color:var(--red)}
+  .conferir{background:var(--cian);color:#06282a;border:none;border-radius:12px;padding:10px 18px;font-weight:800;font-size:16px;cursor:pointer;margin-top:8px}
+  .conferir:disabled{background:#555;cursor:not-allowed}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin:14px 0}
+  .pegadinhas{border:1px solid var(--amar)}
+  .pegadinhas h2{color:var(--amar)}
+  .pegadinhas ol{margin:8px 0 0;padding-left:22px} .pegadinhas li{margin:8px 0}
+  table.cover{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+  table.cover th,table.cover td{border:1px solid var(--line);padding:8px;text-align:left}
+  table.cover th{background:var(--card2);color:var(--amar)}
+  .revisar{border:1px solid var(--red)} .revisar h2{color:var(--red)}
+  .footer-nav{display:flex;justify-content:space-between;margin:20px 0;gap:10px;flex-wrap:wrap}
+  .footer-nav a{background:var(--cian);color:#06282a;text-decoration:none;border-radius:12px;padding:12px 18px;font-weight:800}
+  small.muted{color:var(--ink2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>📖 Leitura Guiada — Taller de Historietas 🎨</h1>
+    <p><b>Espanhol · 6º ano · Colégio Coração Feliz</b></p>
+    <p>Capítulos 6 e 7 · estados de ánimo, presente, gustar, ocio, meses, imperativo e historieta</p>
+    <span class="badge">📅 Prova: 05/10 · leia um quadro de cada vez ✨</span>
+  </header>
+
+  <nav class="tabs">
+    <a href="index.html">🏠 Início</a>
+    <a class="active" href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a href="resumo.html">🗺️ Resumo</a>
+    <a href="simulado.html">📝 Simulado</a>
+  </nav>
+
+  <div class="howto">
+    <h2>Como usar 👣</h2>
+    <p>Cada quadro (bloco) tem um <b>textinho em espanhol com áudio</b> 🔊, uma atividade de <b>completar</b> e <b>3 perguntas</b>. Você <b>escreve</b> a resposta com as suas próprias palavras (não vale copiar!). Depois clica em <b>Conferir</b> para ver a resposta modelo e marcar se acertou. O próximo quadro só abre quando você confere o anterior. No fim há uma caixa de <b>pegadinhas</b> e a tabela de cobertura. Tudo fica salvo sozinho. 💾</p>
+  </div>
+
+  <div class="save-bar">
+    <button class="btn-exp" onclick="exportar()">📥 Exportar</button>
+    <button class="btn-imp" onclick="abrirImport()">📤 Importar</button>
+    <button class="btn-zero" onclick="zerar()">🗑️ Zerar tudo</button>
+    <span id="saveInfo">—</span>
+  </div>
+
+  <div id="blocos"></div>
+
+  <div class="panel pegadinhas">
+    <h2>⚠️ 10 Pegadinhas que a prova adora</h2>
+    <ol>
+      <li><b>gusta × gustan:</b> depende DO QUE se gosta, não de quem! Verbo no infinitivo ou singular → <b>gusta</b>; plural → <b>gustan</b>. "Me gustan las películas" (plural).</li>
+      <li><b>Verbos −zco:</b> só o <b>yo</b> muda (nazco, conozco, crezco). "Tú nace" está ERRADO → é "tú naces".</li>
+      <li><b>Opostos:</b> contento ↔ <u>triste</u>; entusiasmado ↔ <u>desanimado</u>; calmo ↔ <u>furioso</u>; preocupado ↔ <u>relajado</u>.</li>
+      <li><b>Pronome do gustar:</b> él/ella/usted usa <b>le</b> (não "lo"): "A Elena le gustan…".</li>
+      <li><b>Heterogenéricos:</b> <b>el</b> puente (a ponte), <b>el</b> mensaje (a mensagem), <b>la</b> señal (o sinal), <b>la</b> patineta (o skate). O gênero muda!</li>
+      <li><b>Hemisférios:</b> junho/julho/agosto é <b>verano</b> no Norte, mas <b>invierno</b> no Sul. No Sul o verano é dez/jan/fev.</li>
+      <li><b>Imperativo irregular:</b> hacer→<b>haz</b>, ir→<b>ve</b>, salir→<b>sal</b> (formas curtinhas no "tú").</li>
+      <li><b>Onomatopeyas mudam de idioma:</b> o cachorro faz "guau guau" (e não "au au") em espanhol.</li>
+      <li><b>Emociones básicas são 6:</b> alegría, tristeza, enojo, sorpresa, miedo y vergüenza (não confundir com os muitos estados de ánimo).</li>
+      <li><b>Funciones das emoções:</b> adaptativa, social y motivacional (são 3).</li>
+    </ol>
+  </div>
+
+  <div class="panel">
+    <h2 style="color:var(--amar)">🧭 Cobertura — Onde estudei cada assunto</h2>
+    <table class="cover">
+      <tr><th>Tópico da prova</th><th>Capítulo</th><th>Bloco</th></tr>
+      <tr><td>Estados de ánimo (vocabulário)</td><td>6 (p.90)</td><td>Bloco 1</td></tr>
+      <tr><td>Opostos, emociones básicas e funciones</td><td>6 (p.90,98)</td><td>Bloco 2</td></tr>
+      <tr><td>Presente de indicativo (verbos −zco: nacer/conocer/crecer)</td><td>6 (p.94)</td><td>Bloco 3</td></tr>
+      <tr><td>Verbo gustar (gusta×gustan + pronombres)</td><td>6 (p.95,98)</td><td>Bloco 4</td></tr>
+      <tr><td>Actividades de ocio e espacios públicos</td><td>7 (p.104)</td><td>Bloco 5</td></tr>
+      <tr><td>Meses del año, estaciones e hemisferios</td><td>7 (p.105)</td><td>Bloco 6</td></tr>
+      <tr><td>Imperativo afirmativo (regular e irregular)</td><td>7 (p.108,112)</td><td>Bloco 7</td></tr>
+      <tr><td>Heterogenéricos, la historieta e onomatopeyas</td><td>7</td><td>Bloco 8</td></tr>
+    </table>
+  </div>
+
+  <div class="panel revisar" id="revisarBox" style="display:none">
+    <h2>🔁 Para revisar</h2>
+    <p>Estas perguntas ficaram marcadas em vermelho (resposta muito parecida com o texto) ou com algum "não" na autoavaliação. Vale reler o quadro e reescrever com as suas palavras!</p>
+    <ul id="revisarList"></ul>
+  </div>
+
+  <div class="footer-nav">
+    <a href="index.html">🏠 Início</a>
+    <a href="quiz.html">🎯 Ir para o Quiz →</a>
+  </div>
+  <p style="text-align:center"><small class="muted">Feito com carinho para o(a) jovem aprendiz. Conteúdo dos capítulos 6 e 7 do livro de Espanhol (CCF).</small></p>
+</div>
+
+<div id="importModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;align-items:center;justify-content:center">
+  <div style="background:var(--card);border:1.5px solid var(--amar);border-radius:16px;padding:20px;max-width:480px;width:92%">
+    <h3 style="margin-top:0">📤 Importar respostas</h3>
+    <p style="font-size:14px">Cole aqui o texto que você exportou antes:</p>
+    <textarea id="importText" style="width:100%;min-height:110px;background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px"></textarea>
+    <div style="margin-top:10px;display:flex;gap:8px">
+      <button class="btn-imp" onclick="fazerImport()">Importar</button>
+      <button class="btn-zero" onclick="fecharImport()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== ÁUDIO (es-ES, rate=1) =====
+function speak(txt){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(txt);
+  u.lang='es-ES'; u.rate=1;
+  const vs=window.speechSynthesis.getVoices();
+  const es=vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es'));
+  if(es) u.voice=es;
+  window.speechSynthesis.speak(u);
+}
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices(); }
+
+// ===== DADOS DA LEITURA =====
+const BLOCOS = [
+ {
+  id:"b1", cor:"h-cian", emoji:"🎭", titulo:"Bloco 1 — Los estados de ánimo",
+  paragrafos:[
+   "En el taller, cada personaje tiene un <span class='keyword'>estado de ánimo</span> diferente. Los estados de ánimo dicen cómo nos sentimos. Mira algunos: <b>contento</b> (contente), <b>feliz</b> (feliz), <b>triste</b> (triste), <b>enojado</b> (bravo), <b>nervioso</b> (nervoso), <b>tranquilo</b> (tranquilo) y <b>cansado</b> (cansado). <button class='btn-audio' onclick=\"speak('contento, feliz, triste, enojado, nervioso, tranquilo, cansado')\">🔊</button>",
+   "Para preguntar usamos: <b>¿Cómo estás hoy?</b> Y respondemos: <b>Hoy estoy entusiasmado</b> (hoje estou entusiasmado) o <b>Estoy un poco aburrido</b> (estou um pouco entediado). <button class='btn-audio' onclick=\"speak('¿Cómo estás hoy? Hoy estoy entusiasmado. Estoy un poco aburrido.')\">🔊</button>"
+  ],
+  completar:{cq:"Complete: — ¿Cómo estás? — Hoy estoy muy ______ porque gané el juego. (contente)", antes:"Hoy estoy muy", resp:["contento"], dica:"contente, no masculino", fala:"Hoy estoy muy contento porque gané el juego"},
+  perguntas:[
+   {tipo:"conceitual", q:"Com as suas palavras, o que são os 'estados de ánimo'?",
+    modelo:"São os estados de ânimo, ou seja, palavras que dizem como a pessoa está se sentindo (contente, triste, nervosa etc.).",
+    chk:["Falei que dizem como a pessoa se sente?","Dei a ideia de sentimento/humor?"]},
+   {tipo:"aplicacao", q:"Escreva em espanhol uma frase sua dizendo como VOCÊ está hoje (use 'Hoy estoy...').",
+    modelo:"Resposta pessoal. Ex.: 'Hoy estoy tranquilo' ou 'Hoy estoy un poco cansado'. O importante é usar 'Hoy estoy' + um estado de ánimo.",
+    chk:["Usei 'Hoy estoy' (ou 'Estoy')?","Terminei com um estado de ánimo em espanhol?"]},
+   {tipo:"aplicacao", q:"Pense num colega e escreva uma pergunta em espanhol para saber como ele se sente.",
+    modelo:"Ex.: '¿Cómo estás hoy?' ou '¿Cómo te sientes?'. Serve qualquer pergunta que peça o estado de ánimo.",
+    chk:["Escrevi uma pergunta (com ¿ ?)?","A pergunta é sobre como a pessoa se sente?"]}
+  ]
+ },
+ {
+  id:"b2", cor:"h-mag", emoji:"⬌", titulo:"Bloco 2 — Opostos, emociones básicas y funciones",
+  paragrafos:[
+   "Toda historieta tem conflito: um personagem está <b>contento</b> e o outro, <b>triste</b>. Esses são <span class='keyword'>opuestos</span> (contrários). Outros pares: <b>preocupado ↔ relajado</b>, <b>entusiasmado ↔ desanimado</b> y <b>calmo ↔ furioso</b>. <button class='btn-audio' onclick=\"speak('contento, triste; preocupado, relajado; entusiasmado, desanimado; calmo, furioso')\">🔊</button>",
+   "Existen <span class='keyword'>seis emociones básicas</span>: <b>alegría, tristeza, enojo, sorpresa, miedo y vergüenza</b>. <button class='btn-audio' onclick=\"speak('alegría, tristeza, enojo, sorpresa, miedo y vergüenza')\">🔊</button> E as emoções têm três <span class='keyword'>funciones</span>: <b>adaptativa</b> (ajuda a reagir), <b>social</b> (ajuda a conviver) e <b>motivacional</b> (dá energia para agir). Por isso falamos da importância da <b>salud mental</b> (saúde mental)."
+  ],
+  completar:{cq:"Complete com o oposto: 'No estoy desanimado, al contrario, estoy ______.'", antes:"estoy", resp:["entusiasmado"], dica:"o oposto de desanimado", fala:"No estoy desanimado, al contrario, estoy entusiasmado"},
+  perguntas:[
+   {tipo:"aplicacao", q:"Escreva um par de opostos do espanhol (diferente do exemplo 'contento/triste') e explique o que cada um quer dizer.",
+    modelo:"Ex.: 'preocupado' (quando a gente se sente aflito) e 'relajado' (quando está calmo, sem preocupação). Também valem entusiasmado/desanimado ou calmo/furioso.",
+    chk:["Dei um par de opostos em espanhol?","Expliquei o sentido de cada um?"]},
+   {tipo:"conceitual", q:"Quais são as seis emoções básicas? (pode escrever em espanhol)",
+    modelo:"alegría, tristeza, enojo, sorpresa, miedo y vergüenza.",
+    chk:["Listei seis emoções?","Acertei pelo menos quatro delas?"]},
+   {tipo:"aplicacao", q:"As emoções têm três funções (adaptativa, social, motivacional). Escolha uma e explique, com suas palavras, para que ela serve.",
+    modelo:"Ex.: a função social ajuda a gente a conviver e a entender os outros (o medo de alguém nos avisa que algo está errado; a alegria aproxima as pessoas). Vale explicar adaptativa (reagir ao que acontece) ou motivacional (dar energia para agir).",
+    chk:["Escolhi uma das três funções?","Expliquei para que ela serve?"]}
+  ]
+ },
+ {
+  id:"b3", cor:"h-amar", emoji:"✍️", titulo:"Bloco 3 — Presente: verbos con −zco",
+  paragrafos:[
+   "No presente de indicativo, três verbos têm uma pegadinha: <b>nacer</b> (nascer), <b>conocer</b> (conhecer) e <b>crecer</b> (crescer). A irregularidade é <span class='keyword'>só na 1ª pessoa do singular</span> (o 'yo'), que ganha <b>−zco</b>: <b>yo nazco, yo conozco, yo crezco</b>. <button class='btn-audio' onclick=\"speak('yo nazco, yo conozco, yo crezco')\">🔊</button>",
+   "As outras pessoas são normais: <b>tú conoces, él conoce, nosotros conocemos, ellos conocen</b>. <button class='btn-audio' onclick=\"speak('tú conoces, él conoce, nosotros conocemos, ellos conocen')\">🔊</button> Então 'Eu conheço' é <b>Yo conozco</b>, mas 'Você conhece' é <b>Tú conoces</b> (sem o z!)."
+  ],
+  completar:{cq:"Complete: 'Yo ______ a muchos dibujantes.' (verbo conocer, 1ª pessoa)", antes:"Yo", resp:["conozco"], dica:"só o 'yo' ganha −zco", fala:"Yo conozco a muchos dibujantes"},
+  perguntas:[
+   {tipo:"conceitual", q:"Explique, com suas palavras, qual é a única pessoa que muda nos verbos nacer, conocer e crecer.",
+    modelo:"A única que muda é a 1ª pessoa do singular (o 'yo'), que ganha a terminação −zco (nazco, conozco, crezco). As outras pessoas são normais.",
+    chk:["Falei que é o 'yo' (1ª pessoa do singular)?","Citei a terminação −zco?"]},
+   {tipo:"aplicacao", q:"Escreva uma frase sua em espanhol com 'yo' + o verbo crecer.",
+    modelo:"Ex.: 'Yo crezco cada año' (eu cresço a cada ano). O importante é usar 'yo crezco'.",
+    chk:["Usei 'yo crezco'?","Montei uma frase com sentido?"]},
+   {tipo:"aplicacao", q:"Corrija este erro e explique: 'Tú conozco a mi amigo.' O que está errado?",
+    modelo:"O certo é 'Tú conoces a mi amigo'. 'Conozco' é só do 'yo'; com 'tú' usamos 'conoces' (sem z).",
+    chk:["Corrigi para 'conoces'?","Expliquei que −zco é só do 'yo'?"]}
+  ]
+ },
+ {
+  id:"b4", cor:"h-cian", emoji:"❤️", titulo:"Bloco 4 — El verbo gustar",
+  paragrafos:[
+   "No balão de fala, um personagem diz: <b>Me gusta leer historietas</b> (gosto de ler quadrinhos). A regra do <span class='keyword'>gustar</span> é diferente do português: a forma depende <b>do que se gosta</b>, não de quem gosta. <button class='btn-audio' onclick=\"speak('Me gusta leer historietas')\">🔊</button>",
+   "Usamos <b>gusta</b> quando o que se aprecia é <b>singular</b> ou um <b>verbo no infinitivo</b>: 'Me gusta la clase', 'Me gusta estudiar'. Usamos <b>gustan</b> quando é <b>plural</b>: 'Me gustan las películas'. <button class='btn-audio' onclick=\"speak('Me gusta la clase. Me gusta estudiar. Me gustan las películas.')\">🔊</button> E cada pessoa tem um pronome: me, te, le, nos, os, les. 'A Elena <b>le gustan</b> las ideas'."
+  ],
+  completar:{cq:"Complete com gusta ou gustan: 'A mí me ______ las historietas de Condorito.' (plural)", antes:"me", resp:["gustan"], dica:"'las historietas' está no plural", fala:"A mí me gustan las historietas de Condorito"},
+  perguntas:[
+   {tipo:"conceitual", q:"Quando usamos 'gusta' e quando usamos 'gustan'? Explique com suas palavras.",
+    modelo:"Usamos 'gusta' quando o que se aprecia é singular ou um verbo no infinitivo (Me gusta el cine / Me gusta nadar). Usamos 'gustan' quando é plural (Me gustan los libros).",
+    chk:["Falei que 'gusta' é singular ou infinitivo?","Falei que 'gustan' é para o plural?"]},
+   {tipo:"aplicacao", q:"Escreva DUAS frases suas em espanhol: uma com 'gusta' e outra com 'gustan'.",
+    modelo:"Ex.: 'Me gusta el fútbol' (singular) e 'Me gustan los perros' (plural). Qualquer par certo serve.",
+    chk:["Minha frase com 'gusta' tem algo singular ou um infinitivo?","Minha frase com 'gustan' tem algo no plural?"]},
+   {tipo:"aplicacao", q:"Transforme para a 3ª pessoa: 'Me gustan los días fríos' virando uma frase sobre 'Elena'. Use o pronome certo.",
+    modelo:"'A Elena le gustan los días fríos.' Com él/ella/usted usamos o pronome 'le' (e continua 'gustan' porque 'los días' é plural).",
+    chk:["Usei o pronome 'le'?","Mantive 'gustan' (porque é plural)?"]}
+  ]
+ },
+ {
+  id:"b5", cor:"h-mag", emoji:"⚽", titulo:"Bloco 5 — Actividades de ocio y espacios públicos",
+  paragrafos:[
+   "Na historieta, os personagens têm tempo livre — o <span class='keyword'>ocio</span> (lazer). As <b>actividades de ocio</b> são: <b>caminar</b> (caminhar), <b>correr</b> (correr), <b>nadar</b> (nadar), <b>andar en bici</b> (andar de bici), <b>andar en patineta</b> (andar de skate), <b>patinar en línea</b> (patins), <b>leer</b> (ler) y <b>ver obras de arte</b>. <button class='btn-audio' onclick=\"speak('caminar, correr, nadar, andar en bici, andar en patineta, patinar en línea, leer, ver obras de arte')\">🔊</button>",
+   "E onde fazer tudo isso? Nos <span class='keyword'>espacios públicos</span>: la <b>plaza</b> (praça), el <b>parque</b> (parque), el <b>museo</b> (museu), la <b>biblioteca</b> (biblioteca) y el <b>centro cultural</b>. <button class='btn-audio' onclick=\"speak('la plaza, el parque, el museo, la biblioteca, el centro cultural')\">🔊</button>"
+  ],
+  completar:{cq:"Complete: 'Los sábados me gusta ______ en el parque.' (correr)", antes:"me gusta", resp:["correr"], dica:"atividade de ocio, no infinitivo", fala:"Los sábados me gusta correr en el parque"},
+  perguntas:[
+   {tipo:"aplicacao", q:"Escreva em espanhol uma frase sua dizendo UMA atividade de ocio que você gosta e ONDE faz (use um espacio público).",
+    modelo:"Ex.: 'Me gusta leer en la biblioteca' ou 'Me gusta nadar en el parque'. Precisa ter uma atividade + um lugar.",
+    chk:["Citei uma atividade de ocio em espanhol?","Citei um espacio público em espanhol?"]},
+   {tipo:"conceitual", q:"O que quer dizer a palavra 'ocio'? Responda com suas palavras.",
+    modelo:"'Ocio' quer dizer lazer, o tempo livre que a gente usa para se divertir e descansar.",
+    chk:["Falei que é lazer / tempo livre?","Deixei claro o sentido?"]},
+   {tipo:"aplicacao", q:"Liste, em espanhol, três espacios públicos onde dá para ter ocio.",
+    modelo:"Ex.: la plaza, el parque, el museo, la biblioteca, el centro cultural (bastam três).",
+    chk:["Listei três lugares?","Escrevi em espanhol?"]}
+  ]
+ },
+ {
+  id:"b6", cor:"h-amar", emoji:"📅", titulo:"Bloco 6 — Los meses y las estaciones",
+  paragrafos:[
+   "Uma historieta pode se passar ao longo do ano. Os <span class='keyword'>meses del año</span> são: enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre y diciembre. <button class='btn-audio' onclick=\"speak('enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre')\">🔊</button>",
+   "As <span class='keyword'>estaciones</span> dependem do <b>hemisferio</b>. No <b>Hemisferio Norte</b>, junio, julio y agosto é <b>verano</b> (verão). Mas no <b>Hemisferio Sur</b> esses mesmos meses são <b>invierno</b>, e o verano acontece em diciembre, enero y febrero (época das Navidades 🎄). <button class='btn-audio' onclick=\"speak('En el Hemisferio Sur, el verano es diciembre, enero y febrero')\">🔊</button> Por isso o ocio muda: cada estação pede uma atividade diferente."
+  ],
+  completar:{cq:"Complete: 'En el Hemisferio Sur, diciembre es ______.' (a estação)", antes:"diciembre es", resp:["verano","el verano"], dica:"no Sul, dezembro é qual estação?", fala:"En el Hemisferio Sur, diciembre es verano"},
+  perguntas:[
+   {tipo:"aplicacao", q:"Escreva em espanhol os três meses do verano no Hemisfério Sul.",
+    modelo:"diciembre, enero y febrero.",
+    chk:["Citei dezembro, janeiro e fevereiro?","Escrevi em espanhol?"]},
+   {tipo:"conceitual", q:"Por que junho é verão em um lugar e inverno em outro? Explique com suas palavras.",
+    modelo:"Porque depende do hemisfério: no Hemisfério Norte junho é verano, mas no Hemisfério Sul é invierno. As estações são trocadas entre os dois hemisférios.",
+    chk:["Falei que depende do hemisfério (Norte × Sul)?","Mostrei que as estações são trocadas?"]},
+   {tipo:"aplicacao", q:"Escreva uma frase sua em espanhol ligando uma estação a uma atividade de ocio (ex.: no verano eu...).",
+    modelo:"Ex.: 'En verano me gusta nadar' ou 'En invierno me gusta leer'. Precisa ligar estação + atividade.",
+    chk:["Citei uma estação em espanhol?","Liguei a uma atividade de ocio?"]}
+  ]
+ },
+ {
+  id:"b7", cor:"h-cian", emoji:"📣", titulo:"Bloco 7 — El imperativo afirmativo",
+  paragrafos:[
+   "Nos balões, os personagens dão ordens e conselhos com o <span class='keyword'>imperativo afirmativo</span>. Com verbos regulares: <b>caminar → caminá/camine/caminemos/caminad/caminen</b>; <b>comer → comé/coma/comamos/comed/coman</b>; <b>partir → partí/parta/partamos/partid/partan</b>. <button class='btn-audio' onclick=\"speak('caminá, comé, partí')\">🔊</button>",
+   "Alguns são <span class='keyword'>irregulares</span>, principalmente no 'tú': <b>hacer → haz</b>, <b>ir → ve</b>, <b>salir → sal</b>. <button class='btn-audio' onclick=\"speak('haz, ve, sal')\">🔊</button> Exemplos: '<b>Haz</b> la cama', '<b>Salí/Sal</b> que te estoy esperando', '<b>Partan</b> cuanto antes', 'Cuando visiten el restaurante, <b>coman</b> este postre'. <button class='btn-audio' onclick=\"speak('Haz la cama. Partan cuanto antes.')\">🔊</button>"
+  ],
+  completar:{cq:"Complete com o imperativo de 'hacer' (tú): '______ la tarea antes de jugar.'", antes:"", resp:["haz"], dica:"imperativo irregular de hacer no 'tú'", fala:"Haz la tarea antes de jugar"},
+  perguntas:[
+   {tipo:"conceitual", q:"Para que serve o imperativo afirmativo? Dê a ideia com suas palavras.",
+    modelo:"Serve para dar ordens, conselhos, pedidos ou instruções (ex.: 'Haz la cama', 'Coman este postre').",
+    chk:["Falei que serve para dar ordens/conselhos/instruções?","Deixei o sentido claro?"]},
+   {tipo:"aplicacao", q:"Escreva um conselho em espanhol usando um verbo no imperativo (pode ser regular ou irregular).",
+    modelo:"Ex.: 'Come más frutas', 'Camina todos los días', 'Haz la tarea'. Qualquer ordem/conselho no imperativo serve.",
+    chk:["Usei um verbo no imperativo?","Minha frase é uma ordem ou conselho?"]},
+   {tipo:"aplicacao", q:"Passe para o imperativo (tú) os verbos: hacer, ir e salir.",
+    modelo:"hacer → haz; ir → ve; salir → sal (são as formas irregulares curtinhas do 'tú').",
+    chk:["Escrevi haz, ve e sal?","Acertei pelo menos dois?"]}
+  ]
+ },
+ {
+  id:"b8", cor:"h-mag", emoji:"💥", titulo:"Bloco 8 — Heterogenéricos, historieta y onomatopeyas",
+  paragrafos:[
+   "Cuidado com os <span class='keyword'>heterogenéricos</span>: palavras cujo gênero MUDA entre o português e o espanhol. Em espanhol: <b>el puente</b> (mas em português é 'a ponte'), <b>el mensaje</b> ('a mensagem'), <b>la señal</b> ('o sinal'), <b>la patineta</b> ('o skate'). Também: el parque, el libro, la bici. <button class='btn-audio' onclick=\"speak('el puente, el mensaje, la señal, la patineta')\">🔊</button>",
+   "A <span class='keyword'>historieta</span> (quadrinhos) tem: <b>ilustraciones</b>, divisão em <b>viñetas</b> (os quadrinhos), <b>globos de texto</b> (balões) e <b>onomatopeyas</b> (palavras que imitam sons). As onomatopeyas <b>mudam de idioma</b>: o cachorro faz <b>guau guau</b> em espanhol. <button class='btn-audio' onclick=\"speak('guau guau')\">🔊</button>"
+  ],
+  completar:{cq:"Complete com el ou la: '______ puente de la ciudad es muy largo.'", antes:"", resp:["el"], dica:"em espanhol 'puente' é masculino", fala:"El puente de la ciudad es muy largo"},
+  perguntas:[
+   {tipo:"conceitual", q:"O que é um heterogenérico? Dê um exemplo.",
+    modelo:"É uma palavra cujo gênero muda entre o português e o espanhol. Ex.: 'el puente' (masculino em espanhol) é 'a ponte' (feminino em português).",
+    chk:["Expliquei que o gênero muda entre os idiomas?","Dei um exemplo (ex.: el puente / la señal)?"]},
+   {tipo:"conceitual", q:"Cite duas características da historieta (história em quadrinhos).",
+    modelo:"Ex.: tem ilustraciones (desenhos), é dividida em viñetas (quadrinhos), usa globos de texto (balões) e onomatopeyas. Bastam duas.",
+    chk:["Citei duas características?","Usei termos como viñetas, globos ou onomatopeyas?"]},
+   {tipo:"aplicacao", q:"O que é uma onomatopeya e por que ela pode mudar de um idioma para outro? Dê um exemplo.",
+    modelo:"É uma palavra que imita um som. Muda de idioma porque cada língua escreve os sons do seu jeito. Ex.: o cachorro faz 'au au' em português e 'guau guau' em espanhol.",
+    chk:["Falei que imita um som?","Dei um exemplo mostrando a diferença entre idiomas?"]}
+  ]
+ }
+];
+
+// ===== ESTADO / SALVAMENTO =====
+const KEY="esp6_cap6-7_leitura_v1";
+let store={};
+const mem={};
+function load(){
+  try{ const raw=localStorage.getItem(KEY); if(raw) store=JSON.parse(raw); }
+  catch(e){ try{ store=mem[KEY]?JSON.parse(mem[KEY]):{}; }catch(_){ store={}; } }
+  if(!store.blocos) store.blocos={};
+}
+function save(){
+  store.quando=new Date().toLocaleString('pt-BR');
+  const raw=JSON.stringify(store);
+  try{ localStorage.setItem(KEY,raw); }catch(e){ mem[KEY]=raw; }
+  const el=document.getElementById('saveInfo'); if(el) el.textContent="💾 Salvo "+store.quando;
+}
+
+// ===== ANTICÓPIA =====
+function normWords(s){
+  return (s||"").toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/[^a-z0-9\s]/g,' ').split(/\s+/).filter(Boolean);
+}
+function hasRun(hay,seq){
+  if(seq.length===0) return false;
+  for(let i=0;i+seq.length<=hay.length;i++){
+    let ok=true;
+    for(let j=0;j<seq.length;j++){ if(hay[i+j]!==seq[j]){ok=false;break;} }
+    if(ok) return true;
+  }
+  return false;
+}
+function detectTranscricao(answer, blockText, questionText){
+  const a=normWords(answer), b=normWords(blockText), q=normWords(questionText);
+  const n=a.length;
+  if(n<5) return {transcrita:false, maxRun:0, cov:0};
+  let maxRun=0; const covered=new Array(n).fill(false);
+  for(let i=0;i<n;i++){
+    let len=0;
+    for(let l=1;i+l<=n;l++){ if(hasRun(b,a.slice(i,i+l))) len=l; else break; }
+    if(len>=1){
+      const seg=a.slice(i,i+len);
+      const inQ = len>=4 && hasRun(q,seg);
+      if(!inQ){
+        if(len>maxRun) maxRun=len;
+        if(len>=5){ for(let k=i;k<i+len;k++) covered[k]=true; }
+      }
+    }
+  }
+  const cov = covered.filter(Boolean).length / n;
+  return {transcrita:(maxRun>=8 || cov>0.6), maxRun, cov};
+}
+
+// ===== RENDER =====
+function blockPlainText(bl){
+  return bl.paragrafos.map(p=>p.replace(/<[^>]+>/g,' ')).join(' ');
+}
+function st(bid){ if(!store.blocos[bid]) store.blocos[bid]={perg:{},conferido:false}; return store.blocos[bid]; }
+function escapeHtml(s){return (s||"").replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function render(){
+  const cont=document.getElementById('blocos'); cont.innerHTML="";
+  BLOCOS.forEach((bl,idx)=>{
+    const s=st(bl.id);
+    const prev = idx===0 ? true : st(BLOCOS[idx-1].id).conferido;
+    const locked = !prev && !s.conferido;
+    const div=document.createElement('div');
+    div.className="block"+(locked?" locked":"");
+    let statusTxt = s.conferido ? blockStatusLabel(bl) : "";
+    let html=`<div class="block-head ${bl.cor}"><span>${bl.emoji} ${bl.titulo}</span><span class="block-status">${statusTxt}</span></div>`;
+    html+=`<div class="block-body">`;
+    if(locked){
+      html+=`<p><i>🔒 Confira o quadro anterior para abrir este.</i></p>`;
+    }else{
+      html+=`<div class="txt">${bl.paragrafos.map(p=>`<p>${p}</p>`).join("")}</div>`;
+      // completar
+      if(bl.completar){
+        const cv=(s.completar&&s.completar.val)||"";
+        html+=`<div class="completar">`;
+        html+=`<div class="cq">✏️ Completar: ${bl.completar.cq}</div>`;
+        html+=`<input id="${bl.id}_comp" value="${escapeHtml(cv)}" placeholder="escreva aqui">`;
+        html+=`<button class="ck" onclick="checarComp('${bl.id}')">Comprobar</button>`;
+        html+=`<button class="btn-audio" onclick="speak('${bl.completar.fala.replace(/'/g,"\\'")}')">🔊 Ouvir a frase</button>`;
+        html+=`<div class="fb" id="${bl.id}_compfb"></div>`;
+        html+=`</div>`;
+      }
+      bl.perguntas.forEach((pg,qi)=>{
+        const ps=s.perg[qi]||{};
+        const red = ps.transcrita ? " red":"";
+        const tag = pg.tipo==="conceitual" ? `<span class="tag tag-con">conceito</span>` : `<span class="tag tag-apl">aplicação</span>`;
+        html+=`<div class="q${red}" id="${bl.id}_q${qi}">`;
+        html+=`${tag}<label>${qi+1}) ${pg.q}</label>`;
+        html+=`<textarea id="${bl.id}_t${qi}" oninput="onType('${bl.id}',${qi})">${escapeHtml(ps.resp||"")}</textarea>`;
+        html+=`<div class="alert copy" id="${bl.id}_copy${qi}" style="display:none"></div>`;
+        html+=`<div class="alert redwarn" id="${bl.id}_red${qi}" style="display:${ps.transcrita?'block':'none'}">🔴 Esta resposta ficou muito parecida com o texto. Tente reescrever com as suas palavras — isso limpa a marca automaticamente.</div>`;
+        html+=`<div class="modelo${s.conferido?' show':''}" id="${bl.id}_m${qi}">`;
+        html+=`<div class="mtitle">✅ Resposta modelo</div><div>${pg.modelo}</div>`;
+        html+=`<div class="chk">`;
+        pg.chk.forEach((c,ci)=>{
+          const v=(ps.chk&&ps.chk[ci])||"";
+          html+=`<div class="cline"><span>${c}</span>`+
+            `<button class="${v==='sim'?'sel-sim':''}" onclick="setChk('${bl.id}',${qi},${ci},'sim')">Sim</button>`+
+            `<button class="${v==='nao'?'sel-nao':''}" onclick="setChk('${bl.id}',${qi},${ci},'nao')">Não</button></div>`;
+        });
+        html+=`</div></div>`;
+        html+=`</div>`;
+      });
+      html+=`<button class="conferir" id="${bl.id}_btn" onclick="conferir('${bl.id}')">${s.conferido?'✔ Conferido — conferir de novo':'Conferir quadro'}</button>`;
+    }
+    html+=`</div>`;
+    div.innerHTML=html;
+    cont.appendChild(div);
+  });
+  atualizarRevisar();
+}
+
+function blockStatusLabel(bl){
+  const s=st(bl.id); let anyNao=false, anyRed=false;
+  bl.perguntas.forEach((pg,qi)=>{
+    const ps=s.perg[qi]||{};
+    if(ps.transcrita) anyRed=true;
+    (pg.chk||[]).forEach((c,ci)=>{ if(ps.chk&&ps.chk[ci]==='nao') anyNao=true; });
+  });
+  return (anyNao||anyRed) ? "🔁 revisar" : "✅ ok";
+}
+
+function norm(s){ return (s||"").toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9ñ\s]/g,'').trim(); }
+function checarComp(bid){
+  const bl=BLOCOS.find(b=>b.id===bid); const s=st(bid);
+  const val=document.getElementById(bid+'_comp').value;
+  if(!s.completar) s.completar={};
+  s.completar.val=val;
+  const fb=document.getElementById(bid+'_compfb');
+  const acertou = bl.completar.resp.some(r=>norm(r)===norm(val));
+  if(acertou){ fb.className="fb ok"; fb.textContent="✅ ¡Muy bien! Resposta certa."; s.completar.ok=true; }
+  else{ fb.className="fb no"; fb.textContent="❌ Ainda não. Dica: "+bl.completar.dica+". (Tente de novo!)"; s.completar.ok=false; }
+  save();
+}
+
+function onType(bid,qi){
+  const s=st(bid); if(!s.perg[qi]) s.perg[qi]={};
+  const val=document.getElementById(bid+'_t'+qi).value;
+  s.perg[qi].resp=val;
+  if(s.perg[qi].transcrita){
+    const bl=BLOCOS.find(b=>b.id===bid); const pg=bl.perguntas[qi];
+    const d=detectTranscricao(val, blockPlainText(bl), pg.q);
+    if(!d.transcrita){
+      s.perg[qi].transcrita=false;
+      const q=document.getElementById(bid+'_q'+qi); if(q) q.classList.remove('red');
+      const rw=document.getElementById(bid+'_red'+qi); if(rw) rw.style.display='none';
+    }
+  }
+  save(); atualizarRevisar();
+}
+
+function setChk(bid,qi,ci,val){
+  const s=st(bid); if(!s.perg[qi]) s.perg[qi]={}; if(!s.perg[qi].chk) s.perg[qi].chk={};
+  s.perg[qi].chk[ci]=val; save(); render();
+}
+
+function conferir(bid){
+  const bl=BLOCOS.find(b=>b.id===bid); const s=st(bid);
+  const blockText=blockPlainText(bl);
+  for(let qi=0;qi<bl.perguntas.length;qi++){
+    const v=(document.getElementById(bid+'_t'+qi).value||"").trim();
+    if(v.length<3){ showMini(bid, "Preencha as 3 respostas (pelo menos 3 letras cada) antes de conferir. 💪"); return; }
+  }
+  let bloqueio=false;
+  for(let qi=0;qi<bl.perguntas.length;qi++){
+    const pg=bl.perguntas[qi]; const ps=s.perg[qi]||(s.perg[qi]={});
+    const val=document.getElementById(bid+'_t'+qi).value;
+    ps.resp=val;
+    const copyEl=document.getElementById(bid+'_copy'+qi);
+    const d=detectTranscricao(val, blockText, pg.q);
+    if(d.transcrita){
+      if(!ps.tentou){
+        ps.tentou=val;
+        copyEl.textContent="✏️ Boa parte da sua resposta está igual ao texto. Tente reescrever com as suas palavras — explique como se fosse para um amigo, sem olhar o texto. Pode ficar mais curto e simples, o que vale é ser SEU!";
+        copyEl.style.display="block";
+        bloqueio=true;
+      }else{
+        ps.transcrita=true;
+        copyEl.style.display="none";
+        const rw=document.getElementById(bid+'_red'+qi); if(rw) rw.style.display="block";
+        const q=document.getElementById(bid+'_q'+qi); if(q) q.classList.add('red');
+      }
+    }else{
+      ps.transcrita=false;
+      copyEl.style.display="none";
+      const rw=document.getElementById(bid+'_red'+qi); if(rw) rw.style.display="none";
+      const q=document.getElementById(bid+'_q'+qi); if(q) q.classList.remove('red');
+    }
+  }
+  save();
+  if(bloqueio){ return; }
+  s.conferido=true;
+  save(); render();
+}
+
+function showMini(bid,msg){
+  const copyEl=document.getElementById(bid+'_copy0');
+  if(copyEl){ copyEl.textContent=msg; copyEl.style.display="block"; setTimeout(()=>{copyEl.style.display="none";},4000); }
+}
+
+function atualizarRevisar(){
+  const box=document.getElementById('revisarBox'); const ul=document.getElementById('revisarList');
+  ul.innerHTML=""; let n=0;
+  BLOCOS.forEach(bl=>{
+    const s=st(bl.id);
+    bl.perguntas.forEach((pg,qi)=>{
+      const ps=s.perg[qi]||{};
+      let motivo="";
+      if(ps.transcrita) motivo="resposta muito parecida com o texto";
+      let anyNao=false; (pg.chk||[]).forEach((c,ci)=>{ if(ps.chk&&ps.chk[ci]==='nao') anyNao=true; });
+      if(anyNao) motivo=motivo?motivo+" e algum 'não' na autoavaliação":"algum 'não' na autoavaliação";
+      if(motivo){ n++; const li=document.createElement('li'); li.innerHTML=`<b>${bl.titulo}</b>, pergunta ${qi+1} — ${motivo}.`; ul.appendChild(li); }
+    });
+  });
+  box.style.display = n>0 ? "block":"none";
+}
+
+// ===== EXPORTAR / IMPORTAR / ZERAR =====
+function exportar(){
+  const data=JSON.stringify(store,null,2);
+  const blob=new Blob([data],{type:"application/json"});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download="leitura-espanhol-6ano.json"; a.click();
+}
+function abrirImport(){ document.getElementById('importModal').style.display="flex"; }
+function fecharImport(){ document.getElementById('importModal').style.display="none"; }
+function fazerImport(){
+  try{ const t=document.getElementById('importText').value; const obj=JSON.parse(t); store=obj; if(!store.blocos)store.blocos={}; save(); render(); fecharImport(); }
+  catch(e){ document.getElementById('importText').value="⚠️ Texto inválido. Cole o conteúdo exportado.\n\n"+document.getElementById('importText').value; }
+}
+function zerar(){ store={blocos:{}}; try{ localStorage.removeItem(KEY); }catch(e){} save(); render(); }
+
+// ===== INÍCIO =====
+load(); render();
+if(store.quando){ document.getElementById('saveInfo').textContent="💾 Salvo "+store.quando; }
+</script>
+</body>
+</html>
