@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz — Espanhol 6º ano | Taller de Historietas 🎨</title>
+<style>
+  :root{
+    --bg:#16162a; --bg2:#1e1e38; --card:#24243f; --card2:#2c2c4e;
+    --cian:#2ec4c4; --magenta:#ff4d94; --amar:#ffd23f;
+    --ink:#ece9f5; --ink2:#a9a6c4; --line:#3a3a5e; --ok:#43e97b; --red:#ff5d7a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  header.top{background:linear-gradient(135deg,#2c2c4e,#ffd23f 170%);border:1px solid var(--line);border-radius:20px;padding:22px;margin:12px 0;text-align:center}
+  header.top h1{margin:0 0 6px;font-size:26px;color:#fff}
+  header.top p{margin:3px 0;color:#e9e6ff;font-size:15px}
+  nav.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+  nav.tabs a{background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
+  nav.tabs a.active{background:var(--amar);border-color:var(--amar);color:#3a2e05}
+  .save-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:10px 14px;font-size:13px;margin:10px 0}
+  .save-bar button{cursor:pointer;border:none;border-radius:10px;padding:8px 12px;font-weight:700;font-size:13px}
+  .btn-exp{background:#1e4d3a;color:#9af0c0} .btn-imp{background:#1e3a52;color:#9ad0f0} .btn-zero{background:#52222e;color:#ffb0c4}
+  #saveInfo{color:var(--ink2);margin-left:auto}
+  .placar{position:sticky;top:0;z-index:10;background:var(--card2);border:1.5px solid var(--cian);border-radius:14px;padding:10px 16px;margin:10px 0;display:flex;justify-content:space-between;font-weight:800}
+  .placar .ac{color:var(--ok)}
+  .btn-audio{background:var(--cian);border:none;color:#06282a;border-radius:8px;padding:2px 9px;font-size:14px;cursor:pointer;font-weight:900;margin-left:6px}
+  .q{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:16px 18px;margin:14px 0}
+  .q .num{font-size:13px;color:var(--amar);font-weight:800}
+  .q .enun{font-weight:600;margin:4px 0 10px;font-size:18px}
+  .opt{display:block;width:100%;text-align:left;background:var(--card2);border:1.5px solid var(--line);color:var(--ink);border-radius:11px;padding:11px 13px;margin:7px 0;cursor:pointer;font-size:16px;transition:.12s}
+  .opt:hover{border-color:var(--cian)}
+  .opt.ok{background:#11402b;border-color:var(--ok);color:#b6f5cf}
+  .opt.no{background:#401b26;border-color:var(--red);color:#ffc0cf}
+  .opt.dim{opacity:.55}
+  .fb{margin-top:8px;font-size:15px;border-radius:10px;padding:10px 12px;display:none}
+  .fb.show{display:block}
+  .fb.c{background:#11402b;color:#b6f5cf;border:1px solid var(--ok)}
+  .fb.w{background:#3a1f2a;color:#ffc4da;border:1px solid var(--red)}
+  .final{background:var(--card);border:2px solid var(--amar);border-radius:18px;padding:22px;margin:18px 0;text-align:center;display:none}
+  .final.show{display:block}
+  .final .code{font-size:26px;font-weight:900;color:var(--amar);letter-spacing:2px;margin:10px 0;background:var(--bg2);border-radius:10px;padding:10px}
+  .footer-nav{display:flex;justify-content:space-between;margin:20px 0;gap:10px;flex-wrap:wrap}
+  .footer-nav a{background:var(--amar);color:#3a2e05;text-decoration:none;border-radius:12px;padding:12px 18px;font-weight:800}
+  small.muted{color:var(--ink2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>🎯 Quiz — Taller de Historietas</h1>
+    <p><b>Espanhol · 6º ano · Colégio Coração Feliz</b> · Capítulos 6 e 7</p>
+    <p>Clique na resposta e veja na hora se acertou! 🔊 ouça as frases</p>
+  </header>
+
+  <nav class="tabs">
+    <a href="index.html">🏠 Início</a>
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a class="active" href="quiz.html">🎯 Quiz</a>
+    <a href="resumo.html">🗺️ Resumo</a>
+    <a href="simulado.html">📝 Simulado</a>
+  </nav>
+
+  <div class="save-bar">
+    <button class="btn-exp" onclick="exportar()">📥 Exportar</button>
+    <button class="btn-imp" onclick="abrirImport()">📤 Importar</button>
+    <button class="btn-zero" onclick="zerar()">🗑️ Zerar tudo</button>
+    <span id="saveInfo">—</span>
+  </div>
+
+  <div class="placar">
+    <span>Respondidas: <span id="pResp">0</span>/<span id="pTot">0</span></span>
+    <span class="ac">Acertos: <span id="pAc">0</span></span>
+  </div>
+
+  <div id="quiz"></div>
+
+  <div class="final" id="final">
+    <h2>🎉 Você terminou o Quiz!</h2>
+    <p>Seu resultado: <b id="fScore"></b></p>
+    <p>Mostre este código para um responsável ver o relatório:</p>
+    <div class="code" id="fCode">MED-00-XX</div>
+    <p><small class="muted">O código também libera o Relatório para os pais na página inicial.</small></p>
+  </div>
+
+  <div class="footer-nav">
+    <a href="leitura-guiada.html">← Voltar à Leitura</a>
+    <a href="resumo.html">🗺️ Ir para o Resumo →</a>
+  </div>
+  <p style="text-align:center"><small class="muted">Feito com carinho para o(a) jovem aprendiz. Capítulos 6 e 7 do livro de Espanhol (CCF).</small></p>
+</div>
+
+<div id="importModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;align-items:center;justify-content:center">
+  <div style="background:var(--card);border:1.5px solid var(--amar);border-radius:16px;padding:20px;max-width:480px;width:92%">
+    <h3 style="margin-top:0">📤 Importar</h3>
+    <textarea id="importText" style="width:100%;min-height:110px;background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px"></textarea>
+    <div style="margin-top:10px;display:flex;gap:8px">
+      <button class="btn-imp" onclick="fazerImport()">Importar</button>
+      <button class="btn-zero" onclick="fecharImport()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== ÁUDIO =====
+function speak(txt){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(txt); u.lang='es-ES'; u.rate=1;
+  const vs=window.speechSynthesis.getVoices();
+  const es=vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('es')); if(es) u.voice=es;
+  window.speechSynthesis.speak(u);
+}
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices(); }
+
+// ===== EMBARALHADOR (mulberry32) =====
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function shuffle(arr,seed){const r=mulberry32(seed);const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+// ===== PERGUNTAS (correta = ok:true; guardamos por CONTEÚDO, não por letra) =====
+const QS=[
+ {audio:"", enun:"Qual é o OPOSTO de <b>contento</b>?",
+  opts:[{t:"triste",ok:true},{t:"feliz",ok:false},{t:"relajado",ok:false},{t:"tranquilo",ok:false}],
+  fb:"O oposto de 'contento' (contente) é <b>triste</b>."},
+ {audio:"", enun:"Qual é o OPOSTO de <b>calmo</b>?",
+  opts:[{t:"furioso",ok:true},{t:"relajado",ok:false},{t:"tranquilo",ok:false},{t:"cansado",ok:false}],
+  fb:"calmo ↔ <b>furioso</b>. Os outros são parecidos com 'calmo', não o contrário."},
+ {audio:"", enun:"As emociones básicas são SEIS. Qual conjunto está certo?",
+  opts:[{t:"alegría, tristeza, enojo, sorpresa, miedo y vergüenza",ok:true},{t:"alegría, parque, enojo, museo",ok:false},{t:"gusta, gustan, nazco, crezco",ok:false},{t:"enero, febrero, miedo, verano",ok:false}],
+  fb:"As seis emociones básicas são: alegría, tristeza, enojo, sorpresa, miedo y vergüenza."},
+ {audio:"Yo conozco a María", enun:"Complete: 'Yo ______ a María.' (verbo conocer)",
+  opts:[{t:"conozco",ok:true},{t:"conoces",ok:false},{t:"conoce",ok:false},{t:"conocemos",ok:false}],
+  fb:"Com 'yo' usamos a forma irregular <b>conozco</b> (−zco)."},
+ {audio:"", enun:"Nos verbos nacer, conocer e crecer, QUAL pessoa é irregular?",
+  opts:[{t:"a 1ª pessoa do singular (yo)",ok:true},{t:"a 2ª pessoa (tú)",ok:false},{t:"todas as pessoas",ok:false},{t:"só o plural",ok:false}],
+  fb:"Só o <b>yo</b> muda: nazco, conozco, crezco. As outras pessoas são normais."},
+ {audio:"Me gustan las películas mexicanas", enun:"Complete: 'Me ______ las películas mexicanas.'",
+  opts:[{t:"gustan",ok:true},{t:"gusta",ok:false},{t:"gustas",ok:false},{t:"gusto",ok:false}],
+  fb:"'las películas' está no plural, então usamos <b>gustan</b>."},
+ {audio:"Me gusta estudiar", enun:"Complete: 'Me ______ estudiar.' (gostar de uma ação)",
+  opts:[{t:"gusta",ok:true},{t:"gustan",ok:false},{t:"gustas",ok:false},{t:"gustamos",ok:false}],
+  fb:"Antes de um verbo no infinitivo (estudiar) usamos <b>gusta</b>."},
+ {audio:"A Elena le gustan las ideas", enun:"Complete: 'A Elena ______ gustan las ideas.' (pronome certo)",
+  opts:[{t:"le",ok:true},{t:"les",ok:false},{t:"me",ok:false},{t:"te",ok:false}],
+  fb:"Para él/ella/usted o pronome é <b>le</b>: 'A Elena le gustan…'."},
+ {audio:"", enun:"Qual é uma <b>actividad de ocio</b>?",
+  opts:[{t:"nadar",ok:true},{t:"biblioteca",ok:false},{t:"museo",ok:false},{t:"plaza",ok:false}],
+  fb:"<b>nadar</b> é atividade de ocio. Os outros são espacios públicos (lugares)."},
+ {audio:"", enun:"No <b>Hemisferio Sur</b>, qual é a estação em dezembro, janeiro e fevereiro?",
+  opts:[{t:"verano",ok:true},{t:"invierno",ok:false},{t:"otoño",ok:false},{t:"primavera",ok:false}],
+  fb:"No Sul, dez/jan/fev é <b>verano</b> (época das Navidades)."},
+ {audio:"", enun:"Qual mês do ano em espanhol está escrito CORRETAMENTE?",
+  opts:[{t:"septiembre",ok:true},{t:"setembre",ok:false},{t:"septembro",ok:false},{t:"setiembro",ok:false}],
+  fb:"O certo em espanhol é <b>septiembre</b>."},
+ {audio:"Haz la cama", enun:"Qual é o imperativo (tú) do verbo <b>hacer</b>?",
+  opts:[{t:"haz",ok:true},{t:"hace",ok:false},{t:"haces",ok:false},{t:"hago",ok:false}],
+  fb:"O imperativo irregular de hacer no 'tú' é <b>haz</b>: 'Haz la cama'."},
+ {audio:"", enun:"Qual é o imperativo (tú) do verbo <b>salir</b>?",
+  opts:[{t:"sal",ok:true},{t:"sale",ok:false},{t:"sales",ok:false},{t:"salgo",ok:false}],
+  fb:"O imperativo de salir no 'tú' é <b>sal</b> (ou 'salí')."},
+ {audio:"el puente", enun:"Qual é o artigo certo em espanhol? '____ puente' (heterogenérico)",
+  opts:[{t:"el",ok:true},{t:"la",ok:false},{t:"los",ok:false},{t:"las",ok:false}],
+  fb:"Em espanhol é <b>el puente</b> (masculino), mesmo sendo 'a ponte' em português."},
+ {audio:"", enun:"O que é uma <b>onomatopeya</b> na historieta?",
+  opts:[{t:"uma palavra que imita um som",ok:true},{t:"o desenho do personagem",ok:false},{t:"o balão de fala",ok:false},{t:"o quadrinho (viñeta)",ok:false}],
+  fb:"Onomatopeya é uma palavra que <b>imita um som</b> (ex.: guau guau) e muda de idioma."}
+];
+
+// ===== ESTADO =====
+const KEY="esp6_cap6-7_quiz_v1";
+let store={resp:{},acertos:0,respondidas:0,total:QS.length,yy:null};
+const mem={};
+function load(){
+  try{const r=localStorage.getItem(KEY); if(r) store=JSON.parse(r);}catch(e){try{store=mem[KEY]?JSON.parse(mem[KEY]):store;}catch(_){}}
+  if(!store.resp) store.resp={};
+  store.total=QS.length;
+  if(!store.yy){ const L="ABCDEFGHJKLMNPQRSTUVWXYZ"; store.yy=L[Math.floor(Math.random()*L.length)]+L[Math.floor(Math.random()*L.length)]; }
+}
+function save(){
+  store.quando=new Date().toLocaleString('pt-BR');
+  const raw=JSON.stringify(store);
+  try{localStorage.setItem(KEY,raw);}catch(e){mem[KEY]=raw;}
+  const el=document.getElementById('saveInfo'); if(el) el.textContent="💾 Salvo "+store.quando;
+}
+
+function render(){
+  const cont=document.getElementById('quiz'); cont.innerHTML="";
+  document.getElementById('pTot').textContent=QS.length;
+  QS.forEach((q,qi)=>{
+    const opts=shuffle(q.opts, qi*101+7); // semente fixa por questão
+    const chosen=store.resp[qi]; // texto escolhido
+    const div=document.createElement('div'); div.className="q";
+    let html=`<div class="num">Pregunta ${qi+1} de ${QS.length}</div>`;
+    html+=`<div class="enun">${q.enun}${q.audio?` <button class="btn-audio" onclick="speak('${q.audio.replace(/'/g,"\\'")}')">🔊</button>`:""}</div>`;
+    opts.forEach((o,oi)=>{
+      let cls="opt";
+      if(chosen!=null){
+        if(o.ok) cls+=" ok";
+        else if(o.t===chosen) cls+=" no";
+        else cls+=" dim";
+      }
+      html+=`<button class="${cls}" ${chosen!=null?'disabled':''} onclick="responder(${qi},'${o.t.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')">${String.fromCharCode(97+oi)}) ${o.t}</button>`;
+    });
+    html+=`<div class="fb ${chosen!=null?(isOk(qi,chosen)?'c show':'w show'):''}" id="fb${qi}">${chosen!=null?(isOk(qi,chosen)?'✅ ¡Correcto! ':'❌ ¡Casi! ')+q.fb:''}</div>`;
+    div.innerHTML=html;
+    cont.appendChild(div);
+  });
+  atualizarPlacar();
+}
+function isOk(qi,txt){ const q=QS[qi]; const o=q.opts.find(x=>x.t===txt); return o&&o.ok; }
+
+function responder(qi,txt){
+  if(store.resp[qi]!=null) return;
+  store.resp[qi]=txt;
+  save(); render();
+}
+
+function atualizarPlacar(){
+  let ac=0, resp=0;
+  QS.forEach((q,qi)=>{ const c=store.resp[qi]; if(c!=null){ resp++; if(isOk(qi,c)) ac++; } });
+  store.acertos=ac; store.respondidas=resp; save();
+  document.getElementById('pAc').textContent=ac;
+  document.getElementById('pResp').textContent=resp;
+  const fin=document.getElementById('final');
+  if(resp===QS.length){
+    const xx=String(ac).padStart(2,'0');
+    document.getElementById('fScore').textContent=ac+" de "+QS.length+" acertos";
+    document.getElementById('fCode').textContent="MED-"+xx+"-"+store.yy;
+    fin.classList.add('show');
+  }else{ fin.classList.remove('show'); }
+}
+
+function exportar(){
+  const blob=new Blob([JSON.stringify(store,null,2)],{type:"application/json"});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download="quiz-espanhol-6ano.json"; a.click();
+}
+function abrirImport(){ document.getElementById('importModal').style.display="flex"; }
+function fecharImport(){ document.getElementById('importModal').style.display="none"; }
+function fazerImport(){
+  try{ store=JSON.parse(document.getElementById('importText').value); if(!store.resp)store.resp={}; save(); render(); fecharImport(); }
+  catch(e){ document.getElementById('importText').value="⚠️ Texto inválido.\n\n"+document.getElementById('importText').value; }
+}
+function zerar(){ const yy=store.yy; store={resp:{},acertos:0,respondidas:0,total:QS.length,yy:yy}; try{localStorage.removeItem(KEY);}catch(e){} save(); render(); }
+
+// ===== INÍCIO =====
+load(); render();
+if(store.quando){ document.getElementById('saveInfo').textContent="💾 Salvo "+store.quando; }
+</script>
+</body>
+</html>
